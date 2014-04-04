@@ -44,7 +44,7 @@ Temporarily commented out until I figure out how to reference the wp-content dir
 #quotable-toolbar {
   position: absolute;
   display: none;
-  width: 5em;
+	padding: 5px;
   height: 1.5em;
   line-height: 1.5em;
   text-align: center;
@@ -52,4 +52,5 @@ Temporarily commented out until I figure out how to reference the wp-content dir
   color: #fff;
   text-decoration: none;
   transition: all .3s ease;
+	border-radius: 5px;
 }

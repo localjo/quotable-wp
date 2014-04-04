@@ -24,6 +24,16 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+function quotable_setup() {
+  $linktext = "(tweet this)";
+  $pageurl = get_permalink();
+  $theauthor = "jrswp"; //update this to pull from database info about post author
+  $related = "jrswp"; //update to pull from database setting for site's main twitter account?
+  $posthashtags = "quotable"; //update to pull from custom field on post
+  $quotableData = (object) array('linktext' => $linktext, 'permalink' => $pageurl, 'author' => $theauthor, 'related' => $related, 'hashtags' => $posthashtags);
+  return $quotableData;
+}
+
 function quotable_header() {
   if (is_singular()) {
     $output="<link rel='stylesheet' type='text/css' href='" . plugins_url( "/includes/quotable.css", __FILE__ ) . "'>
@@ -34,7 +44,8 @@ function quotable_header() {
 add_action('wp_head', 'quotable_header');
 
 function quotable_toolbar() {
-      $quotableToolbar = "<a style='display: block; top: 0; left: 0;' href='' id='quotable-toolbar'>(toolbar)</a>";
+      $quotableData = quotable_setup();
+      $quotableToolbar = "<a target='_blank' style='display: none; top: 0; left: 0;' href='' id='quotable-toolbar' data-permalink='".$quotableData->permalink."' data-author='".$quotableData->author."' data-related='".$quotableData->related."' data-hashtags='".$quotableData->hashtags."'>".$quotableData->linktext."</a>";
       echo $quotableToolbar;
 }
 //This may be theme dependent (some themes may not call wp_footer)
@@ -51,13 +62,7 @@ function quotable_blockquotes($content) {
       $contentDOM = new DomDocument();
       $contentDOM->loadHtml($content);
 
-      //setup the variables for the twitter links
-
-      $linktext = "(tweet this)"; //update to pull from plugin settings in database
-      $pageurl = get_permalink();
-      $theauthor = "jrswp"; //update this to pull from database info about post author
-      $related = "jrswp"; //update to pull from database setting for site's main twitter account?
-      $posthashtags = "quotable"; //update to pull from custom field on post
+      $quotableData = quotable_setup();
 
         //Get all the blockquotes in the content and loop through them
         $blockquotes = $contentDOM->getElementsByTagName('blockquote');
@@ -70,11 +75,10 @@ function quotable_blockquotes($content) {
             if ($paragraphcount > 0) {
 
                 foreach($paragraphs as $paragraph) {
-                    //Create the share button
                     $tweettext = $paragraph->nodeValue;
                     //$tweettext = (strlen($tweettext) > 140) ? substr($tweettext,0,120).'...' : $tweettext;
-                    $twitterhref = "http://twitter.com/intent/tweet?url=".$pageurl."&text=".$tweettext."&via=".$theauthor."&related=".$related."&hashtags=".$posthashtags;
-                    $quotelink = $contentDOM->createElement('a', $linktext);
+                    $twitterhref = "http://twitter.com/intent/tweet?url=".$quotableData->permalink."&text=".$tweettext."&via=".$quotableData->author."&related=".$quotableData->related."&hashtags=".$quotableData->hashtags;
+                    $quotelink = $contentDOM->createElement('a', $quotableData->linktext);
                     $quotelink->setAttribute("href", $twitterhref);
                     $quotelink->setAttribute("target", "_blank");
 
@@ -85,8 +89,8 @@ function quotable_blockquotes($content) {
                 //Create the share button
                 $tweettext = $blockquote->nodeValue;
                 //$tweettext = (strlen($tweettext) > 140) ? substr($tweettext,0,120).'...' : $tweettext;
-                $twitterhref = "http://twitter.com/intent/tweet?url=".$pageurl."&text=".$tweettext."&via=".$theauthor."&related=".$related."&hashtags=".$posthashtags;
-                $quotelink = $contentDOM->createElement('a', $linktext);
+                $twitterhref = "http://twitter.com/intent/tweet?url=".$quotableData->permalink."&text=".$tweettext."&via=".$quotableData->author."&related=".$quotableData->related."&hashtags=".$quotableData->hashtags;
+                $quotelink = $contentDOM->createElement('a', $quotableData->linktext);
                 $quotelink->setAttribute("href", $twitterhref);
                 $quotelink->setAttribute("target", "_blank");
 

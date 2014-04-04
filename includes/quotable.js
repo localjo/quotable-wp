@@ -12,10 +12,24 @@ function getSelectedText() {
 }
 
 function showQuotableToolbar (text, e) {
-  console.log("showQuotableToolbar called with '"+text+"'");
   //update and position the toolbar before displaying it
-  //quotableToolbar.href =  "http://twitter.com/intent/tweet?url="+ escape(url) +"&text="+ escape(text) +"&via="+ escape(authorTwitter) +"&related="+ escape(relatedAccounts) +"&hashtags="+ escape(postHashtags);
-  quotableToolbar.href =  "http://twitter.com/intent/tweet?url=";
+  quotableToolbar.href = "http://twitter.com/intent/tweet";
+
+  if (pagePermalink) {
+    quotableToolbar.href = quotableToolbar.href + "?url=" + escape(pagePermalink);
+  }
+  if (text) {
+    quotableToolbar.href = quotableToolbar.href + "&text=" + escape(text);
+  }
+  if (authorTwitter) {
+    quotableToolbar.href = quotableToolbar.href + "&via=" + escape(authorTwitter);
+  }
+  if (relatedAccounts) {
+    quotableToolbar.href = quotableToolbar.href + "&related=" + escape(relatedAccounts);
+  }
+  if (postHashtags) {
+    quotableToolbar.href = quotableToolbar.href + "&hashtags=" + escape(postHashtags);
+  }
   // This should be updated to get the position relative to the text selection
   // rather than mouse coordinates
   quotableToolbar.style.top = (e.pageY - 10) + "px";
@@ -24,13 +38,20 @@ function showQuotableToolbar (text, e) {
 }
 
 function hideQuotableToolbar() {
-  console.log("hideQuotableToolbar called");
   quotableToolbar.style.display = "none";
   quotableToolbar.href = ""; //Clear the href to reset the toolbar
 }
 
 window.onload = function() {
   quotableToolbar = document.getElementById("quotable-toolbar");
+  pagePermalink = quotableToolbar.getAttribute("data-permalink");
+  if (!pagePermalink) {
+    pagePermalink = document.URL;
+  }
+  authorTwitter = quotableToolbar.getAttribute("data-author");
+  relatedAccounts = quotableToolbar.getAttribute("data-related");
+  postHashtags = quotableToolbar.getAttribute("data-hashtags");
+
   // Only listen for text selection on content that is quotable to avoid toolbar
   // popping up for content people don't want to share
   var quotableContent = document.getElementById("quotablecontent");
