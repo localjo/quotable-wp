@@ -12,7 +12,6 @@ function getSelectedText() {
 }
 
 function updateQuotableToolbar (text, e) {
-  //update and position the toolbar before displaying it
   quotableToolbar.href = "http://twitter.com/intent/tweet";
 
   if (pagePermalink) {
@@ -39,7 +38,7 @@ function updateQuotableToolbar (text, e) {
 
 function clearQuotableToolbar() {
   quotableToolbar.style.display = "none";
-  quotableToolbar.href = ""; //Clear the href to reset the toolbar
+  quotableToolbar.href = "";
 }
 
 window.onload = function() {
@@ -58,14 +57,14 @@ window.onload = function() {
 
   quotableContent.addEventListener("mouseup", function(e){
     selectedText = getSelectedText();
-    //Only show the toolbar if there is actually text selected
+    //Only update the toolbar if there is actually text selected
     if (selectedText !== "") {
       updateQuotableToolbar(getSelectedText(), e);
     }
   }, false);
 
   quotableContent.addEventListener("mousedown", function(e){
-    //Only hide and clear the toolbar if it is displayed
+    //Only clear the toolbar if it is displayed
     if (quotableToolbar.style.display === "block") {
       clearQuotableToolbar();
     }
