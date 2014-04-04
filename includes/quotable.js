@@ -11,7 +11,7 @@ function getSelectedText() {
   }
 }
 
-function showQuotableToolbar (text, e) {
+function updateQuotableToolbar (text, e) {
   //update and position the toolbar before displaying it
   quotableToolbar.href = "http://twitter.com/intent/tweet";
 
@@ -37,7 +37,7 @@ function showQuotableToolbar (text, e) {
   quotableToolbar.style.display = "block";
 }
 
-function hideQuotableToolbar() {
+function clearQuotableToolbar() {
   quotableToolbar.style.display = "none";
   quotableToolbar.href = ""; //Clear the href to reset the toolbar
 }
@@ -60,14 +60,14 @@ window.onload = function() {
     selectedText = getSelectedText();
     //Only show the toolbar if there is actually text selected
     if (selectedText !== "") {
-      showQuotableToolbar(getSelectedText(), e);
+      updateQuotableToolbar(getSelectedText(), e);
     }
   }, false);
 
   quotableContent.addEventListener("mousedown", function(e){
     //Only hide and clear the toolbar if it is displayed
     if (quotableToolbar.style.display === "block") {
-      hideQuotableToolbar();
+      clearQuotableToolbar();
     }
   }, false);
 }
