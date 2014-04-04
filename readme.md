@@ -1,4 +1,6 @@
-#Things to do
+A WordPress plugin for sharing great quotes. A work in progress.
+
+##Things to do
 
 In no particular order
 
