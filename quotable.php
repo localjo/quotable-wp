@@ -27,17 +27,27 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 function quotable_setup() {
   $linktext = "(tweet this)";
   $pageurl = get_permalink();
-  $theauthor = "jrswp"; //update this to pull from database info about post author
-  $related = "jrswp"; //update to pull from database setting for site's main twitter account?
-  $posthashtags = "quotable"; //update to pull from custom field on post
+  $theauthor = get_the_author_meta('twitter');
+  $wpseosocialoptions = get_option("wpseo_social");
+  $related = $wpseosocialoptions["twitter_site"];
+  $posthashtags = ""; //update to pull from custom field on post
   $quotableData = (object) array('linktext' => $linktext, 'permalink' => $pageurl, 'author' => $theauthor, 'related' => $related, 'hashtags' => $posthashtags);
   return $quotableData;
 }
 
+//Add Twitter contact method to WP user profiles if it doesn't already exist
+function add_twitter_contactmethod( $contactmethods ) {
+  if ( !isset( $contactmethods['twitter'] ) )
+    $contactmethods['twitter'] = 'Twitter';
+  return $contactmethods;
+}
+add_filter( 'user_contactmethods', 'add_twitter_contactmethod', 10, 1 );
+
 function quotable_header() {
   if (is_singular()) {
     $output="<link rel='stylesheet' type='text/css' href='" . plugins_url( "/includes/quotable.css", __FILE__ ) . "'>
-    <script type='text/javascript' src='" . plugins_url( "/includes/quotable.js", __FILE__ ) . "'></script>";
+    <script type='text/javascript' src='" . plugins_url( "/includes/quotable.js", __FILE__ ) . "'></script>
+    <script type='text/javascript' src='http://platform.twitter.com/widgets.js'></script>";
     echo $output;
   }
 }

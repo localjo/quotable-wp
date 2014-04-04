@@ -48,9 +48,9 @@ Temporarily commented out until I figure out how to reference the wp-content dir
   height: 1.5em;
   line-height: 1.5em;
   text-align: center;
-  background: rgba(12,165,176,1);
-  color: #fff;
-  text-decoration: none;
+	background: #eeeeee;
   transition: all .3s ease;
+	border: 1px solid rgba(0,0,0,0.2);
 	border-radius: 5px;
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
