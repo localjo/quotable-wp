@@ -29,10 +29,18 @@ function quotable_setup() {
   $pageurl = get_permalink();
   $theauthor = get_the_author_meta('twitter');
   $wpseosocialoptions = get_option("wpseo_social");
-  $related = $wpseosocialoptions["twitter_site"];
-  $posthashtags = ""; //update to pull from custom field on post
-  $quotableData = (object) array('linktext' => $linktext, 'permalink' => $pageurl, 'author' => $theauthor, 'related' => $related, 'hashtags' => $posthashtags);
+  $related = $wpseosocialoptions["twitter_site"]; //Gets site twitter username if Yoast's WP SEO is installed
+  $posttags = "";
+  $tagarray = get_the_tags();
+  if ($tagarray != "") { //Check that there are actually post tage before trying to use them
+    foreach($tagarray as $tag) {
+      $posttags = $posttags . $tag->name . ",";
+    }
+  }
+  $quotableData = (object) array('linktext' => $linktext, 'permalink' => $pageurl, 'author' => $theauthor, 'related' => $related, 'hashtags' => $posttags);
   return $quotableData;
+
+
 }
 
 //Add Twitter contact method to WP user profiles if it doesn't already exist
