@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 function quotable_setup() {
-  $linktext = "(tweet this)";
+  $linktext = " tweet";
   $pageurl = get_permalink();
   $theauthor = get_the_author_meta('twitter');
   $wpseosocialoptions = get_option("wpseo_social");
@@ -39,8 +39,6 @@ function quotable_setup() {
   }
   $quotableData = (object) array('linktext' => $linktext, 'permalink' => $pageurl, 'author' => $theauthor, 'related' => $related, 'hashtags' => $posttags);
   return $quotableData;
-
-
 }
 
 //Add Twitter contact method to WP user profiles if it doesn't already exist
@@ -53,7 +51,18 @@ add_filter( 'user_contactmethods', 'add_twitter_contactmethod', 10, 1 );
 
 function quotable_header() {
   if (is_singular()) {
-    $output="<link rel='stylesheet' type='text/css' href='" . plugins_url( "/includes/quotable.css", __FILE__ ) . "'>
+    $output="<style>
+    @font-face {
+      font-family: 'quotable-icons';
+      src:url('" . plugins_url( "/includes/quotable-icons.eot?-qd6sr7", __FILE__ ) . "');
+      src:url('" . plugins_url( "/includes/quotable-icons.eot?#iefix-qd6sr7", __FILE__ ) . "') format('embedded-opentype'),
+        url('" . plugins_url( "/includes/quotable-icons.woff?-qd6sr7", __FILE__ ) . "') format('woff'),
+        url('" . plugins_url( "/includes/quotable-icons.ttf?-qd6sr7", __FILE__ ) . "') format('truetype'),
+        url('" . plugins_url( "/includes/quotable-icons.svg?-qd6sr7#quotable-icons", __FILE__ ) . "') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    </style>
+    <link rel='stylesheet' type='text/css' href='" . plugins_url( "/includes/quotable.css", __FILE__ ) . "'>
     <script type='text/javascript' src='" . plugins_url( "/includes/quotable.js", __FILE__ ) . "'></script>
     <script type='text/javascript' src='http://platform.twitter.com/widgets.js'></script>";
     echo $output;
@@ -74,6 +83,8 @@ function quotable_blockquotes($content) {
 
       //Wrap the content in a div to give it an easy ID handle for selection sharing
       $content = "<div id='quotablecontent'>" . $content . "</div>";
+      //Encoding has to be converted or we'll end up with all kinds of jank
+      $content = mb_convert_encoding($content, 'html-entities', 'utf-8');
 
       // Add twitter icon button to end of blockquotes
 
@@ -98,6 +109,7 @@ function quotable_blockquotes($content) {
                     $twitterhref = "http://twitter.com/intent/tweet?url=".$quotableData->permalink."&text=".$tweettext."&via=".$quotableData->author."&related=".$quotableData->related."&hashtags=".$quotableData->hashtags;
                     $quotelink = $contentDOM->createElement('a', $quotableData->linktext);
                     $quotelink->setAttribute("href", $twitterhref);
+                    $quotelink->setAttribute("class", "quotable-link");
                     $quotelink->setAttribute("target", "_blank");
 
                     $paragraph->appendChild($quotelink);

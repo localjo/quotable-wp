@@ -6,4 +6,5 @@ In no particular order
 
 * Add icon fonts with ligatures
 * Position the toolbar relative to the text selection rather than the cursor
+* Cross browser testing
 * More...

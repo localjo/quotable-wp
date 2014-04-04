@@ -1,17 +1,3 @@
-/*
-Temporarily commented out until I figure out how to reference the wp-content directory
-
-@font-face {
-	font-family: 'quotable-icons';
-	src:url('fonts/quotable-icons.eot?-qd6sr7');
-	src:url('fonts/quotable-icons.eot?#iefix-qd6sr7') format('embedded-opentype'),
-		url('fonts/quotable-icons.woff?-qd6sr7') format('woff'),
-		url('fonts/quotable-icons.ttf?-qd6sr7') format('truetype'),
-		url('fonts/quotable-icons.svg?-qd6sr7#quotable-icons') format('svg');
-	font-weight: normal;
-	font-style: normal;
-} */
-
 [class^="icon-"], [class*=" icon-"] {
 	font-family: 'quotable-icons';
 	speak: none;
@@ -42,15 +28,22 @@ Temporarily commented out until I figure out how to reference the wp-content dir
 }
 
 #quotable-toolbar {
+	font-family: 'quotable-icons';
   position: absolute;
   display: none;
-	padding: 5px;
-  height: 1.5em;
+	padding: 5px 10px;
   line-height: 1.5em;
   text-align: center;
+	text-decoration: none;
 	background: #eeeeee;
   transition: all .3s ease;
 	border: 1px solid rgba(0,0,0,0.2);
 	border-radius: 5px;
 	box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+.quotable-link {
+		font-family: 'quotable-icons';
+		text-decoration: none;
+		font-style: normal;
 }
