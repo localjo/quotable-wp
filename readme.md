@@ -12,4 +12,7 @@ In no particular order
 * Add event listeners for touchscreen devices and keyboard input
 * Add support for twitter:// protocol to open links in app
 * Unit tests
+* Use wp_register_script and wp_enqueue_script
+* Move font CSS out of PHP
+* Avoid loading the toolbar on pages that don't need it
 * More...
