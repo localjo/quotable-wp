@@ -54,11 +54,11 @@ function quotable_header() {
     $output="<style>
     @font-face {
       font-family: 'quotable-icons';
-      src:url('" . plugins_url( "/includes/quotable-icons.eot?-qd6sr7", __FILE__ ) . "');
-      src:url('" . plugins_url( "/includes/quotable-icons.eot?#iefix-qd6sr7", __FILE__ ) . "') format('embedded-opentype'),
-        url('" . plugins_url( "/includes/quotable-icons.woff?-qd6sr7", __FILE__ ) . "') format('woff'),
-        url('" . plugins_url( "/includes/quotable-icons.ttf?-qd6sr7", __FILE__ ) . "') format('truetype'),
-        url('" . plugins_url( "/includes/quotable-icons.svg?-qd6sr7#quotable-icons", __FILE__ ) . "') format('svg');
+      src:url('" . plugins_url( "/includes/quotable-icons.eot?fmeejy", __FILE__ ) . "');
+      src:url('" . plugins_url( "/includes/quotable-icons.eot?#iefixfmeejy", __FILE__ ) . "') format('embedded-opentype'),
+        url('" . plugins_url( "/includes/quotable-icons.woff?fmeejy", __FILE__ ) . "') format('woff'),
+        url('" . plugins_url( "/includes/quotable-icons.ttf?fmeejy", __FILE__ ) . "') format('truetype'),
+        url('" . plugins_url( "/includes/quotable-icons.svg?fmeejy#quotable-icons", __FILE__ ) . "') format('svg');
       font-weight: normal;
       font-style: normal;
     </style>
