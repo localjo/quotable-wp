@@ -72,7 +72,7 @@ add_action('wp_head', 'quotable_header');
 
 function quotable_toolbar() {
       $quotableData = quotable_setup();
-      $quotableToolbar = "<a target='_blank' style='display: none; top: 0; left: 0;' href='' id='quotable-toolbar' data-permalink='".$quotableData->permalink."' data-author='".$quotableData->author."' data-related='".$quotableData->related."' data-hashtags='".$quotableData->hashtags."'>".$quotableData->linktext."</a>";
+      $quotableToolbar = "<a target='_blank' style='visibility: hidden; top: 0; left: 0;' href='' id='quotable-toolbar' data-permalink='".$quotableData->permalink."' data-author='".$quotableData->author."' data-related='".$quotableData->related."' data-hashtags='".$quotableData->hashtags."'>".$quotableData->linktext."</a>";
       echo $quotableToolbar;
 }
 //This may be theme dependent (some themes may not call wp_footer)

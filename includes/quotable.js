@@ -1,23 +1,29 @@
 "use strict";
 
 function getSelectedText() {
-  var range;
+  var range, textSelection;
   if (window.getSelection) {
     range = window.getSelection();
-    return range.toString();
+    textSelection = window.getSelection().getRangeAt(0).getBoundingClientRect();
+    textSelection.bottom += document.body.scrollTop;
+    textSelection.left += document.body.scrollLeft;
+    textSelection.top += document.body.scrollBottom;
+    textSelection.right += document.body.scrollRight;
+    textSelection.text = range.toString();
+    return textSelection;
   }
   range = document.selection.createRange();
   return range.text;
 }
 
-function updateQuotableToolbar(text, e) {
+function updateQuotableToolbar(selectedText) {
   quotableToolbar.href = "http://twitter.com/intent/tweet";
 
   if (pagePermalink) {
     quotableToolbar.href = quotableToolbar.href + "?url=" + escape(pagePermalink);
   }
-  if (text) {
-    quotableToolbar.href = quotableToolbar.href + "&text=" + escape(text);
+  if (selectedText.text) {
+    quotableToolbar.href = quotableToolbar.href + "&text=" + escape(selectedText.text);
   }
   if (authorTwitter) {
     quotableToolbar.href = quotableToolbar.href + "&via=" + escape(authorTwitter);
@@ -28,15 +34,14 @@ function updateQuotableToolbar(text, e) {
   if (postHashtags) {
     quotableToolbar.href = quotableToolbar.href + "&hashtags=" + escape(postHashtags);
   }
-  // This should be updated to get the position relative to the text selection
-  // rather than mouse coordinates
-  quotableToolbar.style.top = (e.pageY - 10) + "px";
-  quotableToolbar.style.left = (e.pageX + 5) + "px";
-  quotableToolbar.style.display = "block";
+
+  quotableToolbar.style.top = (selectedText.top - quotableToolbar.offsetHeight - 10) + "px";
+  quotableToolbar.style.left = (selectedText.left + ((selectedText.right - selectedText.left) / 2)) + "px";
+  quotableToolbar.style.visibility = "visible";
 }
 
 function clearQuotableToolbar() {
-  quotableToolbar.style.display = "none";
+  quotableToolbar.style.visibility = "hidden";
   quotableToolbar.href = "";
 }
 
@@ -54,18 +59,19 @@ window.onload = function () {
   // popping up for content people don't want to share
   window.quotableContent = document.getElementById("quotablecontent");
 
-  quotableContent.addEventListener("mouseup", function (e) {
+  quotableContent.addEventListener("mouseup", function () {
     window.selectedText = getSelectedText();
     //Only update the toolbar if there is actually text selected
-    if (selectedText !== "") {
-      updateQuotableToolbar(getSelectedText(), e);
+    if (selectedText.text !== "") {
+      updateQuotableToolbar(selectedText);
     }
   }, false);
 
-  quotableContent.addEventListener("mousedown", function () {
-    //Only clear the toolbar if it is displayed
-    if (quotableToolbar.style.display === "block") {
+  // Clicking anywhere on the document, other than the toolbar, when the toolbar
+  // is displayed should clear it.
+  document.getElementsByTagName('body')[0].addEventListener("mousedown", function (e) {
+    if ((e.target.id !== "quotable-toolbar") && (quotableToolbar.style.visibility === "visible")) {
       clearQuotableToolbar();
     }
   }, false);
-}
+};

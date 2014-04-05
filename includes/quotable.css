@@ -29,21 +29,43 @@
 
 #quotable-toolbar {
 	font-family: 'quotable-icons';
-  position: absolute;
-  display: none;
+	position: absolute;
+	display: block;
 	padding: 5px 10px;
-  line-height: 1.5em;
-  text-align: center;
+	line-height: 1.5em;
+	text-align: center;
 	text-decoration: none;
 	background: #eeeeee;
-  transition: all .3s ease;
 	border: 1px solid rgba(0,0,0,0.2);
 	border-radius: 5px;
-	box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+#quotable-toolbar:after, #quotable-toolbar:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+#quotable-toolbar:after {
+	border-color: rgba(238, 238, 238, 0);
+	border-top-color: #eeeeee;
+	border-width: 6px;
+	margin-left: -6px;
+}
+#quotable-toolbar:before {
+	border-color: rgba(0, 0, 0, 0);
+	border-top-color: rgba(0, 0, 0, 0.3);
+	border-width: 7px;
+	margin-left: -7px;
 }
 
 .quotable-link {
-		font-family: 'quotable-icons';
-		text-decoration: none;
-		font-style: normal;
+	font-family: 'quotable-icons';
+	text-decoration: none;
+	font-style: normal;
 }
