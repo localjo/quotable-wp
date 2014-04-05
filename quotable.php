@@ -6,6 +6,7 @@ Description: A plugin that helps people share your content via powerful quotes.
 Version: 0.1
 Author: Josiah Sprague
 Author URI: http://josiahsprague.com
+Text Domain: quotable
 License: GPL2
 
 Copyright 2014 Josiah Sprague (email : info@josiahsprague.com)
@@ -140,10 +141,8 @@ function quotable_blockquotes($content) {
 add_filter( 'the_content', 'quotable_blockquotes' );
 
 // Plugin Localization
-add_action('init', 'quotable_load_translation_file');
-
 function quotable_load_translation_file() {
-    // relative path to WP_PLUGIN_DIR where the translation files will sit:
     $plugin_path = plugin_basename( dirname( __FILE__ ) .'/translations' );
     load_plugin_textdomain( 'quotable', '', $plugin_path );
 }
+add_action('init', 'quotable_load_translation_file');
