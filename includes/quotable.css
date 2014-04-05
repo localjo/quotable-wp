@@ -1,14 +1,5 @@
-#quotable-toolbar {
+#quotable-toolbar, .quotable-link {
 	font-family: 'quotable-icons';
-	position: absolute;
-	display: block;
-	padding: 5px 10px;
-	line-height: 1.5em;
-	text-align: center;
-	text-decoration: none;
-	background: #eeeeee;
-	border: 1px solid rgba(0,0,0,0.2);
-	border-radius: 5px;
 
 	/* Enable Ligatures ================ */
 	-webkit-font-feature-settings: "liga";
@@ -21,6 +12,18 @@
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+#quotable-toolbar {
+	position: absolute;
+	display: block;
+	padding: 5px 10px;
+	line-height: 1.5em;
+	text-align: center;
+	text-decoration: none;
+	background: #eeeeee;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 5px;
 }
 
 #quotable-toolbar:after, #quotable-toolbar:before {
@@ -48,19 +51,6 @@
 }
 
 .quotable-link {
-	font-family: 'quotable-icons';
 	text-decoration: none;
 	font-style: normal;
-
-	/* Enable Ligatures ================ */
-	-webkit-font-feature-settings: "liga";
-	-moz-font-feature-settings: "liga=1";
-	-moz-font-feature-settings: "liga";
-	-ms-font-feature-settings: "liga" 1;
-	-o-font-feature-settings: "liga";
-	font-feature-settings: "liga";
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
