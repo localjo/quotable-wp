@@ -5,10 +5,6 @@ function getSelectedText() {
   if (window.getSelection) {
     range = window.getSelection();
     textSelection = window.getSelection().getRangeAt(0).getBoundingClientRect();
-    textSelection.bottom += document.body.scrollTop;
-    textSelection.left += document.body.scrollLeft;
-    textSelection.top += document.body.scrollBottom;
-    textSelection.right += document.body.scrollRight;
     textSelection.text = range.toString();
     return textSelection;
   }
@@ -34,9 +30,8 @@ function updateQuotableToolbar(selectedText) {
   if (postHashtags) {
     quotableToolbar.href = quotableToolbar.href + "&hashtags=" + escape(postHashtags);
   }
-
-  quotableToolbar.style.top = (selectedText.top - quotableToolbar.offsetHeight - 10) + "px";
-  quotableToolbar.style.left = (selectedText.left + ((selectedText.right - selectedText.left) / 2)) + "px";
+  quotableToolbar.style.top = ((selectedText.top + document.body.scrollTop) - quotableToolbar.offsetHeight - 10) + "px";
+  quotableToolbar.style.left = (selectedText.left + ((selectedText.right - selectedText.left - quotableToolbar.offsetWidth) / 2)) + "px";
   quotableToolbar.style.visibility = "visible";
 }
 
