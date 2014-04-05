@@ -12,4 +12,5 @@ In no particular order
 * Position the toolbar relative to the text selection rather than the cursor
 * Add event listeners for touchscreen devices
 * Add support for twitter:// protocol to open links in app
+* Unit tests
 * More...
