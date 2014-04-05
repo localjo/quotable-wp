@@ -10,8 +10,7 @@ Look for the Twitter bird on the blockquotes near the bottom, and try selecting 
 In no particular order
 
 * Position the toolbar relative to the text selection rather than the cursor
-* Add event listeners for touchscreen devices
+* Add event listeners for touchscreen devices and keyboard input
 * Add support for twitter:// protocol to open links in app
-* Test against WCAG 2.0
 * Unit tests
 * More...

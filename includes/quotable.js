@@ -1,17 +1,16 @@
+"use strict";
+
 function getSelectedText() {
+  var range;
   if (window.getSelection) {
-    var range = window.getSelection();
-    return range.toString()
+    range = window.getSelection();
+    return range.toString();
   }
-  else {
-    if (document.selection.createRange) {
-      var range = document.selection.createRange();
-      return range.text;
-    }
-  }
+  range = document.selection.createRange();
+  return range.text;
 }
 
-function updateQuotableToolbar (text, e) {
+function updateQuotableToolbar(text, e) {
   quotableToolbar.href = "http://twitter.com/intent/tweet";
 
   if (pagePermalink) {
@@ -41,29 +40,29 @@ function clearQuotableToolbar() {
   quotableToolbar.href = "";
 }
 
-window.onload = function() {
-  quotableToolbar = document.getElementById("quotable-toolbar");
-  pagePermalink = quotableToolbar.getAttribute("data-permalink");
-  if (!pagePermalink) {
+window.onload = function () {
+  window.quotableToolbar = document.getElementById("quotable-toolbar");
+  window.pagePermalink = quotableToolbar.getAttribute("data-permalink");
+  if (pagePermalink === "") {
     pagePermalink = document.URL;
   }
-  authorTwitter = quotableToolbar.getAttribute("data-author");
-  relatedAccounts = quotableToolbar.getAttribute("data-related");
-  postHashtags = quotableToolbar.getAttribute("data-hashtags");
+  window.authorTwitter = quotableToolbar.getAttribute("data-author");
+  window.relatedAccounts = quotableToolbar.getAttribute("data-related");
+  window.postHashtags = quotableToolbar.getAttribute("data-hashtags");
 
   // Only listen for text selection on content that is quotable to avoid toolbar
   // popping up for content people don't want to share
-  var quotableContent = document.getElementById("quotablecontent");
+  window.quotableContent = document.getElementById("quotablecontent");
 
-  quotableContent.addEventListener("mouseup", function(e){
-    selectedText = getSelectedText();
+  quotableContent.addEventListener("mouseup", function (e) {
+    window.selectedText = getSelectedText();
     //Only update the toolbar if there is actually text selected
     if (selectedText !== "") {
       updateQuotableToolbar(getSelectedText(), e);
     }
   }, false);
 
-  quotableContent.addEventListener("mousedown", function(e){
+  quotableContent.addEventListener("mousedown", function () {
     //Only clear the toolbar if it is displayed
     if (quotableToolbar.style.display === "block") {
       clearQuotableToolbar();
