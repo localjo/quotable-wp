@@ -1,6 +1,5 @@
-"use strict";
-
 function getSelectedText() {
+  "use strict";
   var range, textSelection;
   if (window.getSelection) {
     range = window.getSelection();
@@ -13,6 +12,7 @@ function getSelectedText() {
 }
 
 function updateQuotableToolbar(toolbar, selection) {
+  "use strict";
   var url, via, related, hashtags;
   toolbar.href = "http://twitter.com/intent/tweet";
   url = toolbar.getAttribute("data-permalink");
@@ -42,11 +42,13 @@ function updateQuotableToolbar(toolbar, selection) {
 }
 
 function clearQuotableToolbar(toolbar) {
+  "use strict";
   toolbar.style.visibility = "hidden";
   toolbar.href = "";
 }
 
 window.onload = function () {
+  "use strict";
   var quotableToolbar, quotableContent;
   quotableToolbar = document.getElementById("quotable-toolbar");
   if (quotableToolbar !== null) { //Don't do anything if the quotable-toolbar element isn't on the page
