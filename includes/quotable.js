@@ -16,19 +16,19 @@ function updateQuotableToolbar(selectedText) {
   quotableToolbar.href = "http://twitter.com/intent/tweet";
 
   if (pagePermalink) {
-    quotableToolbar.href = quotableToolbar.href + "?url=" + escape(pagePermalink);
+    quotableToolbar.href = quotableToolbar.href + "?url=" + encodeURIComponent(pagePermalink);
   }
   if (selectedText.text) {
-    quotableToolbar.href = quotableToolbar.href + "&text=" + escape(selectedText.text);
+    quotableToolbar.href = quotableToolbar.href + "&text=" + encodeURIComponent(selectedText.text);
   }
   if (authorTwitter) {
-    quotableToolbar.href = quotableToolbar.href + "&via=" + escape(authorTwitter);
+    quotableToolbar.href = quotableToolbar.href + "&via=" + encodeURIComponent(authorTwitter);
   }
   if (relatedAccounts) {
-    quotableToolbar.href = quotableToolbar.href + "&related=" + escape(relatedAccounts);
+    quotableToolbar.href = quotableToolbar.href + "&related=" + encodeURIComponent(relatedAccounts);
   }
   if (postHashtags) {
-    quotableToolbar.href = quotableToolbar.href + "&hashtags=" + escape(postHashtags);
+    quotableToolbar.href = quotableToolbar.href + "&hashtags=" + encodeURIComponent(postHashtags);
   }
   quotableToolbar.style.top = ((selectedText.top + document.body.scrollTop) - quotableToolbar.offsetHeight - 10) + "px";
   quotableToolbar.style.left = (selectedText.left + ((selectedText.right - selectedText.left - quotableToolbar.offsetWidth) / 2)) + "px";
