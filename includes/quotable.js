@@ -67,7 +67,7 @@ window.onload = function () {
 
     // Clicking anywhere on the document, other than the toolbar, when the toolbar
     // is displayed should clear it.
-    document.getElementsByTagName('body')[0].addEventListener("mousedown", function (e) {
+    document.body.addEventListener("mousedown", function (e) {
       if ((e.target.id !== "quotable-toolbar") && (quotableToolbar.style.visibility === "visible")) {
         clearQuotableToolbar(quotableToolbar);
       }
