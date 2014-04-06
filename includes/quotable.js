@@ -47,7 +47,7 @@ function clearQuotableToolbar(toolbar) {
   toolbar.href = "";
 }
 
-window.onload = function () {
+window.addEventListener("load", function() {
   "use strict";
   var quotableToolbar, quotableContent;
   quotableToolbar = document.getElementById("quotable-toolbar");
@@ -73,4 +73,4 @@ window.onload = function () {
       }
     }, false);
   }
-};
+});
