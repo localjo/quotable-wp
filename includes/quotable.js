@@ -12,54 +12,54 @@ function getSelectedText() {
   return range.text;
 }
 
-function updateQuotableToolbar(selectedText) {
-  quotableToolbar.href = "http://twitter.com/intent/tweet";
+function updateQuotableToolbar(toolbar, selection) {
+  var url, via, related, hashtags;
+  toolbar.href = "http://twitter.com/intent/tweet";
+  url = toolbar.getAttribute("data-permalink");
+  via = toolbar.getAttribute("data-author");
+  related = toolbar.getAttribute("data-related");
+  hashtags = toolbar.getAttribute("data-hashtags");
 
-  if (pagePermalink) {
-    quotableToolbar.href = quotableToolbar.href + "?url=" + encodeURIComponent(pagePermalink);
+  if (selection.text) {
+    toolbar.href = toolbar.href + "?text=" + encodeURIComponent(selection.text);
   }
-  if (selectedText.text) {
-    quotableToolbar.href = quotableToolbar.href + "&text=" + encodeURIComponent(selectedText.text);
+  if (url) {
+    toolbar.href = toolbar.href + "&url=" + encodeURIComponent(url);
   }
-  if (authorTwitter) {
-    quotableToolbar.href = quotableToolbar.href + "&via=" + encodeURIComponent(authorTwitter);
+  if (via) {
+    toolbar.href = toolbar.href + "&via=" + encodeURIComponent(via);
   }
-  if (relatedAccounts) {
-    quotableToolbar.href = quotableToolbar.href + "&related=" + encodeURIComponent(relatedAccounts);
+  if (related) {
+    toolbar.href = toolbar.href + "&related=" + encodeURIComponent(related);
   }
-  if (postHashtags) {
-    quotableToolbar.href = quotableToolbar.href + "&hashtags=" + encodeURIComponent(postHashtags);
+  if (hashtags) {
+    toolbar.href = toolbar.href + "&hashtags=" + encodeURIComponent(hashtags);
   }
-  quotableToolbar.style.top = ((selectedText.top + document.body.scrollTop) - quotableToolbar.offsetHeight - 10) + "px";
-  quotableToolbar.style.left = (selectedText.left + ((selectedText.right - selectedText.left - quotableToolbar.offsetWidth) / 2)) + "px";
-  quotableToolbar.style.visibility = "visible";
+
+  toolbar.style.top = ((selection.top + document.body.scrollTop) - toolbar.offsetHeight - 10) + "px";
+  toolbar.style.left = (selection.left + ((selection.right - selection.left - toolbar.offsetWidth) / 2)) + "px";
+  toolbar.style.visibility = "visible";
 }
 
-function clearQuotableToolbar() {
-  quotableToolbar.style.visibility = "hidden";
-  quotableToolbar.href = "";
+function clearQuotableToolbar(toolbar) {
+  toolbar.style.visibility = "hidden";
+  toolbar.href = "";
 }
 
 window.onload = function () {
-  window.quotableToolbar = document.getElementById("quotable-toolbar");
+  var quotableToolbar, quotableContent;
+  quotableToolbar = document.getElementById("quotable-toolbar");
   if (quotableToolbar !== null) { //Don't do anything if the quotable-toolbar element isn't on the page
-    window.pagePermalink = quotableToolbar.getAttribute("data-permalink");
-    if (pagePermalink === "") {
-      pagePermalink = document.URL;
-    }
-    window.authorTwitter = quotableToolbar.getAttribute("data-author");
-    window.relatedAccounts = quotableToolbar.getAttribute("data-related");
-    window.postHashtags = quotableToolbar.getAttribute("data-hashtags");
 
     // Only listen for text selection on content that is quotable to avoid toolbar
     // popping up for content people don't want to share
-    window.quotableContent = document.getElementById("quotablecontent");
+    quotableContent = document.getElementById("quotablecontent");
 
     quotableContent.addEventListener("mouseup", function () {
-      window.selectedText = getSelectedText();
+      var selection = getSelectedText();
       //Only update the toolbar if there is actually text selected
-      if (selectedText.text !== "") {
-        updateQuotableToolbar(selectedText);
+      if (selection.text !== "") {
+        updateQuotableToolbar(quotableToolbar, selection);
       }
     }, false);
 
@@ -67,7 +67,7 @@ window.onload = function () {
     // is displayed should clear it.
     document.getElementsByTagName('body')[0].addEventListener("mousedown", function (e) {
       if ((e.target.id !== "quotable-toolbar") && (quotableToolbar.style.visibility === "visible")) {
-        clearQuotableToolbar();
+        clearQuotableToolbar(quotableToolbar);
       }
     }, false);
   }
