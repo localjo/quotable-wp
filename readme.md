@@ -1,11 +1,17 @@
 A WordPress plugin for sharing great quotes. A work in progress.
 
-##See it in action
+## Get it yourself
+
+You can either download and install the zip manually, or find the plugin on WordPress.org
+
+http://wordpress.org/plugins/quotable/
+
+## See it in action
 If you want to see this plugin in action without installing it yourself, check out this page on my blog: http://josiahsprague.com/destination-isnt-point/
 
 Look for the Twitter bird on the blockquotes near the bottom, and try selecting some text with a mouse and see what happens.
 
-##Things to do
+## Things to do
 
 In no particular order
 
