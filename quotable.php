@@ -50,31 +50,20 @@ function add_twitter_contactmethod( $contactmethods ) {
 }
 add_filter( 'user_contactmethods', 'add_twitter_contactmethod', 10, 1 );
 
-function quotable_header() {
-  if (is_singular()) {
-    $output="<style>
-    @font-face {
-      font-family: 'quotable-icons';
-      src:url('" . plugins_url( "/includes/quotable-icons.eot?fmeejy", __FILE__ ) . "');
-      src:url('" . plugins_url( "/includes/quotable-icons.eot?#iefixfmeejy", __FILE__ ) . "') format('embedded-opentype'),
-        url('" . plugins_url( "/includes/quotable-icons.woff?fmeejy", __FILE__ ) . "') format('woff'),
-        url('" . plugins_url( "/includes/quotable-icons.ttf?fmeejy", __FILE__ ) . "') format('truetype'),
-        url('" . plugins_url( "/includes/quotable-icons.svg?fmeejy#quotable-icons", __FILE__ ) . "') format('svg');
-      font-weight: normal;
-      font-style: normal;
-    </style>
-    <link rel='stylesheet' type='text/css' href='" . plugins_url( "/includes/quotable.css", __FILE__ ) . "'>
-    <script type='text/javascript' src='" . plugins_url( "/includes/quotable.js", __FILE__ ) . "'></script>
-    <script type='text/javascript' src='http://platform.twitter.com/widgets.js'></script>";
-    echo $output;
-  }
+function quotable_scripts() {
+	wp_enqueue_style( 'quotable', plugins_url( "/includes/quotable.css", __FILE__ ) );
+  wp_enqueue_script( 'twitter-widgets', 'http://platform.twitter.com/widgets.js' );
+	wp_enqueue_script( 'quotable', plugins_url( "/includes/quotable.js", __FILE__ ), array('twitter-widgets'));
 }
-add_action('wp_head', 'quotable_header');
+
+add_action( 'wp_enqueue_scripts', 'quotable_scripts' );
 
 function quotable_toolbar() {
+  if( is_singular()) {
       $quotableData = quotable_setup();
       $quotableToolbar = "<a target='_blank' style='visibility: hidden; top: 0; left: 0;' href='' id='quotable-toolbar' data-permalink='".$quotableData->permalink."' data-author='".$quotableData->author."' data-related='".$quotableData->related."' data-hashtags='".$quotableData->hashtags."'>".$quotableData->linktext."</a>";
       echo $quotableToolbar;
+    }
 }
 //This may be theme dependent (some themes may not call wp_footer)
 add_action('wp_footer', 'quotable_toolbar');
@@ -105,6 +94,13 @@ function quotable_blockquotes($content) {
             if ($paragraphcount > 0) {
 
                 foreach($paragraphs as $paragraph) {
+
+                    $paragraph->setAttribute("class", "quotable-p");
+                    $quoteWrap = $contentDOM->createElement('span', $paragraph->nodeValue);
+                    $quoteWrap->setAttribute("class", "quotable-span");
+                    $paragraph->nodeValue = "";
+                    $paragraph->appendChild($quoteWrap);
+
                     $tweettext = $paragraph->nodeValue;
                     //$tweettext = (strlen($tweettext) > 140) ? substr($tweettext,0,120).'...' : $tweettext;
                     $twitterhref = "http://twitter.com/intent/tweet?url=".$quotableData->permalink."&text=".$tweettext."&via=".$quotableData->author."&related=".$quotableData->related."&hashtags=".$quotableData->hashtags;
@@ -112,10 +108,17 @@ function quotable_blockquotes($content) {
                     $quotelink->setAttribute("href", $twitterhref);
                     $quotelink->setAttribute("class", "quotable-link");
                     $quotelink->setAttribute("target", "_blank");
+                    $quotelink->setAttribute("title", "Tweet this!");
 
                     $paragraph->appendChild($quotelink);
                 }
             } else {
+
+              $blockquote->setAttribute("class", "quotable-p");
+              $quoteWrap = $contentDOM->createElement('span', $blockquote->nodeValue);
+              $quoteWrap->setAttribute("class", "quotable-span");
+              $blockquote->nodeValue = "";
+              $blockquote->appendChild($quoteWrap);
 
                 //Create the share button
                 $tweettext = $blockquote->nodeValue;
@@ -123,7 +126,9 @@ function quotable_blockquotes($content) {
                 $twitterhref = "http://twitter.com/intent/tweet?url=".$quotableData->permalink."&text=".$tweettext."&via=".$quotableData->author."&related=".$quotableData->related."&hashtags=".$quotableData->hashtags;
                 $quotelink = $contentDOM->createElement('a', $quotableData->linktext);
                 $quotelink->setAttribute("href", $twitterhref);
+                $quotelink->setAttribute("class", "quotable-link");
                 $quotelink->setAttribute("target", "_blank");
+                $quotelink->setAttribute("title", "Tweet this!");
 
                 $blockquote->appendChild($quotelink);
             }

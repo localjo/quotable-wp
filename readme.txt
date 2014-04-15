@@ -1,7 +1,7 @@
 === Quotable ===
 Contributors: josiahsprague
 Donate link: http://josiahsprague.com/support
-Tags: social, quotes, sharing
+Tags: social, quotes, sharing, twitter
 Requires at least: 3.0.1
 Tested up to: 3.4
 Stable tag: trunk
@@ -19,7 +19,7 @@ A plugin that helps people share your content via powerful quotes. Provides an i
 1. Upload the plugin files to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
-After that the plugin should just work. Try highlighting text on a page to see the quotable toolbar popup, and look for the quotable toolbar added to the end of the `<blockquote>` elements in all of your posts.
+After that the plugin should just work. Try highlighting text on a page to see the quotable toolbar popup, and look for the quotable toolbar added to the end of the `<blockquote>` elements in all of your posts. See the FAQ for more information about configuration.
 
 == Frequently Asked Questions ==
 
@@ -29,11 +29,11 @@ I may add integration with certain websites or services as time goes on, but my 
 
 = How do I add an author who gets credit the the shared content? =
 
-You can use Yoast's WordPress SEO plugin to set a site-wide Twitter account and a Twitter account for each user. When a tweet is created with the plugin, those values will be used to give credit where credit is due.
+You can use Yoast's WordPress SEO plugin to set a site-wide Twitter account and a Twitter account for each author. When a tweet is created with the plugin, those values will be used to give credit where credit is due.
 
 = How do I add hashtags to the shared content? =
 
-Hashtags are generated based on the wordpress tags that were used on the post.
+Hashtags are generated based on the WordPress tags that were used on the post.
 
 == Screenshots ==
 1. The plugin will add a quotable button to the end of all blockquotes. When the button is clicked, a new Twitter window is created with the quoted or selected text.
@@ -42,6 +42,11 @@ Hashtags are generated based on the wordpress tags that were used on the post.
 
 == Changelog ==
 
+= 0.3 =
+* Blockquote text is now highlighted on hover of the Tweet link to give a visual cue for the functionality
+* Now uses wp_enqueue_scripts to add scripts
+* Custom font CSS has been moved out of PHP into CSS
+* Quotable toolbar is no longer added to pages where it is not used
 = 0.2 =
 * Updated readme and added screenshots.
 = 0.1 =

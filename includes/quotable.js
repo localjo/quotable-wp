@@ -47,10 +47,23 @@
   }
 
   window.addEventListener("load", function() {
-    var quotableToolbar, quotableContent;
+    var quotableToolbar, quotableContent, quotableLinks, linkColor;
+
+    quotableLinks = document.getElementsByClassName("quotable-link");
+    //linkColor = window.getComputedStyle(quotableLinks[0], null).getPropertyValue("color");
+
+    for(var i = 0; i < quotableLinks.length; ++i){
+        quotableLinks[i].addEventListener("mouseover", function (e) {
+          e.target.parentNode.setAttribute('data-quotehover', 'true');
+        }, false);
+
+        quotableLinks[i].addEventListener("mouseout", function (e) {
+            e.target.parentNode.setAttribute('data-quotehover', 'false');
+        }, false);
+    }
+
     quotableToolbar = document.getElementById("quotable-toolbar");
     if (quotableToolbar !== null) { //Don't do anything if the quotable-toolbar element isn't on the page
-
       // Only listen for text selection on content that is quotable to avoid toolbar
       // popping up for content people don't want to share
       quotableContent = document.getElementById("quotablecontent");

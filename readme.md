@@ -1,4 +1,4 @@
-A WordPress plugin for sharing great quotes. A work in progress.
+A WordPress plugin that helps people share your content via powerful quotes. Provides an interface for sharing selected text directly to twitter along with a link to the original content, and credit to the author. Also provides an interface on blockquote elements for sharing those quotes directly.
 
 ## Get it yourself
 
@@ -15,10 +15,8 @@ Look for the Twitter bird on the blockquotes near the bottom, and try selecting 
 
 In no particular order
 
-* Add event listeners for touchscreen devices and keyboard input
-* Add support for twitter:// protocol to open links in app
-* Unit tests
-* Use wp_register_script and wp_enqueue_script
-* Move font CSS out of PHP
-* Avoid loading the toolbar on pages that don't need it
-* More...
+* Add detection for twitter:// protocol to open links in app if installed - it looks like this might not be possible, if anyone has an idea for how to make this work, let me know.
+* Don't add quotable link to paragraph elements that are citations
+* Add option to share on reddit
+
+If you would like to contribute to this plugin, please feel free to send a pull-request!

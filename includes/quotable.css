@@ -1,3 +1,14 @@
+@font-face {
+	font-family: 'quotable-icons';
+	src:url('quotable-icons.eot?fmeejy');
+	src:url('quotable-icons.eot?#iefixfmeejy') format('embedded-opentype'),
+		url('quotable-icons.woff?fmeejy') format('woff'),
+		url('quotable-icons.ttf?fmeejy') format('truetype'),
+		url('quotable-icons.svg?fmeejy#quotable-icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
 #quotable-toolbar, .quotable-link {
 	font-family: 'quotable-icons';
 
@@ -53,4 +64,8 @@
 .quotable-link {
 	text-decoration: none;
 	font-style: normal;
+}
+
+[data-quotehover=true] .quotable-span {
+	background: rgba(100,100,100,0.1);
 }
