@@ -44,6 +44,8 @@ Hashtags are generated based on the WordPress tags that were used on the post.
 
 == Changelog ==
 
+= 0.4 =
+* Added check for mb_convert_encoding for servers that don't support it
 = 0.3 =
 * Blockquote text is now highlighted on hover of the Tweet link to give a visual cue for the functionality
 * Now uses wp_enqueue_scripts to add scripts
