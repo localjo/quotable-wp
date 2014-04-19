@@ -74,7 +74,9 @@ function quotable_blockquotes($content) {
       //Wrap the content in a div to give it an easy ID handle for selection sharing
       $content = "<div id='quotablecontent'>" . $content . "</div>";
       //Encoding has to be converted or we'll end up with all kinds of jank
-      $content = mb_convert_encoding($content, 'html-entities', 'utf-8');
+      if (function_exists('mb_convert_encoding')){
+        $content = mb_convert_encoding($content, 'html-entities', 'utf-8');
+      }
 
       // Add twitter icon button to end of blockquotes
 

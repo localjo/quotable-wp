@@ -3,16 +3,18 @@ Contributors: josiahsprague
 Donate link: http://josiahsprague.com/support
 Tags: social, quotes, sharing, twitter
 Requires at least: 3.0.1
-Tested up to: 3.4
+Tested up to: 3.9
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A plugin that helps people share your content via powerful quotes.
+Quotable enables your readers to share your notable quotes quickly and easily on Twitter.
 
 == Description ==
 
-A plugin that helps people share your content via powerful quotes. Provides an interface for sharing selected text directly to twitter along with a link to the original content, and credit to the author. Also provides an interface on blockquote elements for sharing those quotes directly.
+Make your content easy to tweet with Quotable. Quotable enables your readers to share your notable quotes quickly and easily on Twitter by automatically adding a "Tweet this!" button to blockquotes and selected text in your existing content. Retina ready and automatically matches your site's theme. No configuration required.
+
+Tweets include the post or page permalink and WordPress tags are converted to hashtags. Also integrates with Twitter accounts configured via Yoast's WordPress SEO to include Twitter mentions for post authors and suggest following the website's Twitter account.
 
 == Installation ==
 
