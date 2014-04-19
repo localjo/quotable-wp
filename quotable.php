@@ -3,7 +3,7 @@
 Plugin Name: Quotable
 Plugin URI: http://josiahsprague.com/quotable
 Description: A plugin that helps people share your content via powerful quotes.
-Version: 0.4
+Version: 0.5
 Author: Josiah Sprague
 Author URI: http://josiahsprague.com
 Text Domain: quotable
@@ -78,7 +78,7 @@ function quotable_blockquotes($content) {
         $content = mb_convert_encoding($content, 'html-entities', 'utf-8');
       }
 
-      // Add twitter icon button to end of blockquotes
+      libxml_use_internal_errors(true); //Keep errors from displaying for mal-formed html
 
       $contentDOM = new DomDocument();
       $contentDOM->loadHtml($content);

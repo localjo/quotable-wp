@@ -44,6 +44,8 @@ Hashtags are generated based on the WordPress tags that were used on the post.
 
 == Changelog ==
 
+= 0.5 =
+* Hides errors caused by mal-formed HTML
 = 0.4 =
 * Added check for mb_convert_encoding for servers that don't support it
 = 0.3 =
