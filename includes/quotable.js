@@ -36,7 +36,8 @@
       toolbar.href = toolbar.href + "&hashtags=" + encodeURIComponent(hashtags);
     }
 
-    toolbar.style.top = ((selection.top + document.body.scrollTop) - toolbar.offsetHeight - 10) + "px";
+    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop; //To account for standard and quirks modes
+    toolbar.style.top = ((selection.top + scrollTop) - toolbar.offsetHeight - 10) + "px";
     toolbar.style.left = (selection.left + ((selection.right - selection.left - toolbar.offsetWidth) / 2)) + "px";
     toolbar.style.visibility = "visible";
   }
