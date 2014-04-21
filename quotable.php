@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Quotable
-Plugin URI: http://josiahsprague.com/quotable
+Plugin URI: http://josiahsprague.github.io/quotable-wp/
 Description: A plugin that helps people share your content via powerful quotes.
 Version: 0.5
 Author: Josiah Sprague
@@ -52,8 +52,8 @@ add_filter( 'user_contactmethods', 'add_twitter_contactmethod', 10, 1 );
 
 function quotable_scripts() {
 	wp_enqueue_style( 'quotable', plugins_url( "/includes/quotable.css", __FILE__ ) );
-  wp_enqueue_script( 'twitter-widgets', 'http://platform.twitter.com/widgets.js' );
-	wp_enqueue_script( 'quotable', plugins_url( "/includes/quotable.js", __FILE__ ), array('twitter-widgets'));
+  wp_enqueue_script( 'twitter-widgets', 'http://platform.twitter.com/widgets.js', false, false, true );
+	wp_enqueue_script( 'quotable', plugins_url( "/includes/quotable.js", __FILE__ ), array('twitter-widgets'), false, true);
 }
 
 add_action( 'wp_enqueue_scripts', 'quotable_scripts' );
