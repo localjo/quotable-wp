@@ -44,6 +44,8 @@ Hashtags are generated based on the WordPress tags that were used on the post.
 
 == Changelog ==
 
+= 0.6 =
+* Fixed positioning for the text selection button in Firefox when the page is scrolled.
 = 0.5 =
 * Hides errors caused by mal-formed HTML
 = 0.4 =
