@@ -3,7 +3,7 @@ Contributors: josiahsprague
 Donate link: http://josiahsprague.com/support
 Tags: social, quotes, sharing, twitter
 Requires at least: 3.0.1
-Tested up to: 3.9
+Tested up to: 3.9.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -44,8 +44,12 @@ Hashtags are generated based on the WordPress tags that were used on the post.
 
 == Changelog ==
 
+= 0.7 =
+* Fixed issue where plugin was stripping out HTML inside of blockquotes.
+* Refactored some code
 = 0.6 =
 * Fixed positioning for the text selection button in Firefox when the page is scrolled.
+* Defers loading of JS by placing it in the footer instead of the head.
 = 0.5 =
 * Hides errors caused by mal-formed HTML
 = 0.4 =

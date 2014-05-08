@@ -23,6 +23,11 @@
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
+	text-decoration: none;
+}
+.quotable-link:hover {
+	text-decoration: none;
 }
 
 #quotable-toolbar {
@@ -66,6 +71,6 @@
 	font-style: normal;
 }
 
-[data-quotehover=true] .quotable-span {
+span[data-quotehover=true] {
 	background: rgba(100,100,100,0.1);
 }

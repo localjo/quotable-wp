@@ -15,8 +15,8 @@ Look for the Twitter bird on the blockquotes near the bottom, and try selecting 
 
 In no particular order
 
-* Add detection for twitter:// protocol to open links in app if installed - it looks like this might not be possible, if anyone has an idea for how to make this work, let me know.
-* Don't add quotable link to paragraph elements that are citations
-* Add option to share on reddit
+[ ] Add detection for twitter:// protocol to open links in app if installed - it looks like this might not be possible, if anyone has an idea for how to make this work, let me know.
+[ ] Don't add quotable link to paragraph elements that are citations
+[ ] Add option to share on reddit
 
 If you would like to contribute to this plugin, please feel free to send a pull-request!

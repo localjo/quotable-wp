@@ -3,7 +3,7 @@
 Plugin Name: Quotable
 Plugin URI: http://josiahsprague.github.io/quotable-wp/
 Description: A plugin that helps people share your content via powerful quotes.
-Version: 0.6
+Version: 0.7
 Author: Josiah Sprague
 Author URI: http://josiahsprague.com
 Text Domain: quotable
@@ -97,42 +97,11 @@ function quotable_blockquotes($content) {
 
                 foreach($paragraphs as $paragraph) {
 
-                    $paragraph->setAttribute("class", "quotable-p");
-                    $quoteWrap = $contentDOM->createElement('span', $paragraph->nodeValue);
-                    $quoteWrap->setAttribute("class", "quotable-span");
-                    $paragraph->nodeValue = "";
-                    $paragraph->appendChild($quoteWrap);
-
-                    $tweettext = $paragraph->nodeValue;
-                    //$tweettext = (strlen($tweettext) > 140) ? substr($tweettext,0,120).'...' : $tweettext;
-                    $twitterhref = "http://twitter.com/intent/tweet?url=".$quotableData->permalink."&text=".$tweettext."&via=".$quotableData->author."&related=".$quotableData->related."&hashtags=".$quotableData->hashtags;
-                    $quotelink = $contentDOM->createElement('a', $quotableData->linktext);
-                    $quotelink->setAttribute("href", $twitterhref);
-                    $quotelink->setAttribute("class", "quotable-link");
-                    $quotelink->setAttribute("target", "_blank");
-                    $quotelink->setAttribute("title", "Tweet this!");
-
-                    $paragraph->appendChild($quotelink);
+                    quotable_add_link($contentDOM, $paragraph, $quotableData);
                 }
             } else {
 
-              $blockquote->setAttribute("class", "quotable-p");
-              $quoteWrap = $contentDOM->createElement('span', $blockquote->nodeValue);
-              $quoteWrap->setAttribute("class", "quotable-span");
-              $blockquote->nodeValue = "";
-              $blockquote->appendChild($quoteWrap);
-
-                //Create the share button
-                $tweettext = $blockquote->nodeValue;
-                //$tweettext = (strlen($tweettext) > 140) ? substr($tweettext,0,120).'...' : $tweettext;
-                $twitterhref = "http://twitter.com/intent/tweet?url=".$quotableData->permalink."&text=".$tweettext."&via=".$quotableData->author."&related=".$quotableData->related."&hashtags=".$quotableData->hashtags;
-                $quotelink = $contentDOM->createElement('a', $quotableData->linktext);
-                $quotelink->setAttribute("href", $twitterhref);
-                $quotelink->setAttribute("class", "quotable-link");
-                $quotelink->setAttribute("target", "_blank");
-                $quotelink->setAttribute("title", "Tweet this!");
-
-                $blockquote->appendChild($quotelink);
+              quotable_add_link($contentDOM, $blockquote, $quotableData);
             }
         }
 
@@ -146,6 +115,32 @@ function quotable_blockquotes($content) {
   return $content;
 }
 add_filter( 'the_content', 'quotable_blockquotes' );
+
+function quotable_add_link($contentDOM, $paragraph, $quotableData) {
+    $quoteWrap = $contentDOM->createElement('span', "");
+    $quoteWrap->setAttribute("class", "quotable-text"); //This span is used to highlight text on mouseover
+    
+    $tweettext = $paragraph->nodeValue;
+    //$tweettext = (strlen($tweettext) > 140) ? substr($tweettext,0,120).'...' : $tweettext;
+    $twitterhref = "http://twitter.com/intent/tweet?url=".$quotableData->permalink."&text=".$tweettext."&via=".$quotableData->author."&related=".$quotableData->related."&hashtags=".$quotableData->hashtags;
+    $quotelink = $contentDOM->createElement('a', $quotableData->linktext);
+    $quotelink->setAttribute("href", $twitterhref);
+    $quotelink->setAttribute("class", "quotable-link");
+    $quotelink->setAttribute("target", "_blank");
+    $quotelink->setAttribute("title", "Tweet this!");
+
+    //DOMElement doesn't have a method to get the innerHTML of an element without stripping out HTML, so this is a workaround
+    while ($paragraph->childNodes->length > 0) {
+        $child = $paragraph->childNodes->item(0);
+        $paragraph->removeChild($child);
+        $quoteWrap->appendChild($child);
+    }
+
+    $quoteWrap->appendChild($quotelink);
+
+    $paragraph->nodeValue = "";
+    $paragraph->appendChild($quoteWrap);
+}
 
 // Plugin Localization
 function quotable_load_translation_file() {
