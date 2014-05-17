@@ -5,8 +5,8 @@ Tags: social, quotes, sharing, twitter
 Requires at least: 3.0.1
 Tested up to: 3.9.1
 Stable tag: trunk
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: MIT
+License URI: http://opensource.org/licenses/MIT
 
 Quotable enables your readers to share your notable quotes quickly and easily on Twitter.
 
@@ -24,6 +24,10 @@ Tweets include the post or page permalink and WordPress tags are converted to ha
 After that the plugin should just work. Try highlighting text on a page to see the quotable toolbar popup, and look for the quotable toolbar added to the end of the `<blockquote>` elements in all of your posts. See the FAQ for more information about configuration.
 
 == Frequently Asked Questions ==
+
+= Can I turn off the functionality just for blockquotes or just for text selection? =
+
+Yes. Go to Dashboard > Settings > Discussion > Quotable to selectively deactivate plugin functionality site-wide. If you want to disable functionality for a single page or post, look for the Quotable screen options section in the page or post editor and check the boxes to disable functionality for only that post.
 
 = Can you add the option to share quotes on more social networks? =
 
@@ -44,6 +48,11 @@ Hashtags are generated based on the WordPress tags that were used on the post.
 
 == Changelog ==
 
+= 0.8 =
+* Added settings to WP Dashboard which allow plugin functionality to be selectively disabled site-wide.
+* Added post options which allow plugin functionality to be selectively disabled per post.
+* Cleaned up whitespace in code.
+* Changed license from GPL to MIT
 = 0.7 =
 * Fixed issue where plugin was stripping out HTML inside of blockquotes.
 * Refactored some code
