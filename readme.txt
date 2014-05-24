@@ -48,6 +48,8 @@ Hashtags are generated based on the WordPress tags that were used on the post.
 
 == Changelog ==
 
+= 0.85 =
+* Fixed bug where tweets were occasionaly generated with a link to the wrong post.
 = 0.8 =
 * Added settings to WP Dashboard which allow plugin functionality to be selectively disabled site-wide.
 * Added post options which allow plugin functionality to be selectively disabled per post.

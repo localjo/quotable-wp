@@ -3,7 +3,7 @@
 Plugin Name: Quotable
 Plugin URI: http://josiahsprague.github.io/quotable-wp/
 Description: A plugin that helps people share your content via powerful quotes.
-Version: 0.8
+Version: 0.85
 Author: Josiah Sprague
 Author URI: http://josiahsprague.github.io/
 Text Domain: quotable
@@ -32,7 +32,7 @@ THE SOFTWARE.
 
 function quotable_setup() {
   $linktext = " tweet";
-  $pageurl = get_permalink();
+  $pageurl = esc_url_raw(( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
   $theauthor = get_the_author_meta('twitter');
   $wpseosocialoptions = get_option("wpseo_social");
   $related = $wpseosocialoptions["twitter_site"]; //Gets site twitter username if Yoast's WP SEO is installed
