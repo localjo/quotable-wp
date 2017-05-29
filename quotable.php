@@ -1,15 +1,15 @@
 <?php
 /*
 Plugin Name: Quotable
-Plugin URI: http://josiahsprague.github.io/quotable-wp/
+Plugin URI: https://github.com/localjo/quotable-wp
 Description: A plugin that helps people share your content via powerful quotes.
-Version: 0.85
-Author: Josiah Sprague
-Author URI: http://josiahsprague.github.io/
+Version: 1.0.0
+Author: Jo Sprague
+Author URI: http://josiahsprague.com/
 Text Domain: quotable
 License: MIT
 
-Copyright 2014 Josiah Sprague (email : info@josiahsprague.com)
+Copyright 2014 Josiah Sprague (email : josiah.sprague@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -160,7 +160,7 @@ function quotable_default_settings() {
 
 function quotable_settings_init() {
   // Check if settings exist before adding the defaults
-  if( false == get_option( 'quotable_activation' ) ) {  
+  if( false == get_option( 'quotable_activation' ) ) {
     add_option( 'quotable_activation', apply_filters( 'quotable_default_settings', quotable_default_settings() ) );
   }
 
@@ -180,7 +180,7 @@ function quotable_settings_init() {
     );
 
   register_setting( 'discussion', 'quotable_activation' );
-} 
+}
 add_action( 'admin_init', 'quotable_settings_init' );
 
 function quotable_settings_section_setup() {
