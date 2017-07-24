@@ -3,7 +3,7 @@
 Plugin Name: Quotable
 Plugin URI: https://github.com/localjo/quotable-wp
 Description: A plugin that helps people share your content via powerful quotes.
-Version: 1.0.0
+Version: 1.0.1
 Author: Jo Sprague
 Author URI: http://josiahsprague.com/
 Text Domain: quotable

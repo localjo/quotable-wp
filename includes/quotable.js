@@ -64,10 +64,8 @@
     }
 
     quotableToolbar = document.getElementById("quotable-toolbar");
-    if (quotableToolbar !== null) { //Don't do anything if the quotable-toolbar element isn't on the page
-      // Only listen for text selection on content that is quotable to avoid toolbar
-      // popping up for content people don't want to share
-      quotableContent = document.getElementById("quotablecontent");
+    quotableContent = document.getElementById("quotablecontent");
+    if (quotableToolbar !== null && quotableContent !== null) { //Don't do anything if quotable elements aren't on the page
 
       quotableContent.addEventListener("mouseup", function () {
         var selection = getSelectedText();
