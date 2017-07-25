@@ -3,7 +3,7 @@
 Plugin Name: Quotable
 Plugin URI: https://github.com/localjo/quotable-wp
 Description: A plugin that helps people share your content via powerful quotes.
-Version: 1.0.1
+Version: 1.0.2
 Author: Jo Sprague
 Author URI: http://josiahsprague.com/
 Text Domain: quotable
@@ -60,7 +60,7 @@ function quotable_scripts() {
   $textActivation = isset($activation['textselection']) ? $activation['textselection'] : false;
 
   wp_enqueue_style( 'quotable', plugins_url( "/includes/quotable.css", __FILE__ ) );
-  wp_enqueue_script( 'twitter-widgets', 'http://platform.twitter.com/widgets.js', false, false, true );
+  wp_enqueue_script( 'twitter-widgets', ( is_ssl() ? 'https://' : 'http://' ) . '//platformz.twitter.com/widgets.js', false, false, true );
   if( true == $textActivation ) {
     $textdisable = get_post_meta( get_the_ID(), '_quotable_text_disable', true );
     if ( ! $textdisable ) {
