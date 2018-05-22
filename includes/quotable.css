@@ -67,8 +67,11 @@
 }
 
 .quotable-link {
-	text-decoration: none;
 	font-style: normal;
+	text-decoration: none !important;
+	border: 0 !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
 }
 
 span[data-quotehover=true] {
