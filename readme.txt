@@ -49,7 +49,8 @@ Hashtags are generated based on the WordPress tags that were used on the post.
 == Changelog ==
 
 = 1.0.6 =
-* Update code formatting and style to match WordPress standards
+* Update code formatting and style to match WordPress standards.
+* Remove underlines, shadows and borders from Twitter icon at the end of blockquotes.
 = 1.0.2 =
 * Fetch Twitter script via https
 = 1.0.1 =
