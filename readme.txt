@@ -4,7 +4,7 @@ Donate link: http://josiahsprague.com/
 Tags: social, quotes, sharing, twitter
 Requires at least: 3.0.1
 Tested up to: 3.9.1
-Stable tag: 1.0.2
+Stable tag: 1.0.6
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -48,6 +48,8 @@ Hashtags are generated based on the WordPress tags that were used on the post.
 
 == Changelog ==
 
+= 1.0.6 =
+* Update code formatting and style to match WordPress standards
 = 1.0.2 =
 * Fetch Twitter script via https
 = 1.0.1 =
