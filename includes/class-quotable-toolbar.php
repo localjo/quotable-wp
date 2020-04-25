@@ -156,6 +156,10 @@ class Quotable_Toolbar {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'quotable_settings_init' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'quotable_add_meta_box' );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'quotable_save_meta_box_data' );
+		$this->loader->add_filter( 'user_contactmethods', $plugin_admin, 'add_twitter_contactmethod' );
 
 	}
 

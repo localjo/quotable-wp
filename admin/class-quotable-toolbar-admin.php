@@ -55,6 +55,160 @@ class Quotable_Toolbar_Admin {
 	}
 
 	/**
+	 * Add Twitter contact method to WP user profiles if it doesn't already exist.
+	 * Yoast's WP SEO also adds this.
+	 *
+	 * @param array $user_contact an array of user contact methods.
+	 * @return user_contact
+	 */
+	public function add_twitter_contactmethod( $user_contact ) {
+		if ( ! isset( $user_contact['twitter'] ) ) {
+			$user_contact['twitter'] = 'Twitter';
+		}
+		return $user_contact;
+	}
+
+	/**
+	 * Set default settings for quotable
+	 */
+	function quotable_default_settings() {
+		$defaults = array(
+			'blockquotes'   => true,
+			'textselection' => true,
+		);
+		return apply_filters( 'quotable_default_settings', $defaults );
+	}
+
+	/**
+	 * Initialize Quotable Settings
+	 */
+	public function quotable_settings_init() {
+		// Check if settings exist before adding the defaults.
+		if ( false === get_option( 'quotable_activation' ) ) {
+			add_option(
+				'quotable_activation',
+				apply_filters( 'quotable_default_settings', quotable_default_settings() )
+			);
+		}
+
+		add_settings_section(
+			'quotable_settings',
+			'Quotable',
+			array( $this, 'quotable_settings_section_setup' ),
+			'discussion'
+		);
+
+		add_settings_field(
+			'quotable_activation',
+			'Activate Quotable',
+			array( $this, 'quotable_activation_setting_setup' ),
+			'discussion',
+			'quotable_settings'
+		);
+
+		register_setting( 'discussion', 'quotable_activation' );
+	}
+
+	/**
+	 * Add settings description markup
+	 */
+	function quotable_settings_section_setup() {
+		include( plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-settings-header.php' );
+	}
+
+	/**
+	 * Set up Quotable's activation settings markup
+	 */
+	function quotable_activation_setting_setup() {
+		$is_activated = (array) get_option( 'quotable_activation' );
+		include( plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-settings-checkboxes.php' );
+	}
+
+	/**
+	 * Add Quotable metabox
+	 */
+	public function quotable_add_meta_box() {
+		$screens = array( 'post', 'page' );
+		foreach ( $screens as $screen ) {
+			add_meta_box(
+				'quotable_sectionid',
+				__( 'Quotable', 'quotable-toolbar' ),
+				array( $this, 'quotable_meta_box_callback' ),
+				$screen,
+				'side'
+			);
+		}
+	}
+
+	/**
+	 * Set up quotable metabox contents for a post
+	 *
+	 * @param WP_POST $post A post object.
+	 */
+	function quotable_meta_box_callback( $post ) {
+		wp_nonce_field( 'quotable_meta_box', 'quotable_meta_box_nonce' );
+		$post_id             = $post->ID;
+		$blockquote_value    = get_post_meta(
+			$post_id,
+			'_quotable_blockquote_disable',
+			true
+		);
+		$textselection_value = get_post_meta(
+			$post_id,
+			'_quotable_text_disable',
+			true
+		);
+		include( plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-metabox.php' );
+	}
+
+	/**
+	 * Save metabox data
+	 *
+	 * @param int $post_id The post id to save the metabox data to.
+	 */
+	public function quotable_save_meta_box_data( $post_id ) {
+		if (
+			! isset( $_POST['quotable_meta_box_nonce'] ) || // Input var okay.
+			! wp_verify_nonce(
+				sanitize_key( $_POST['quotable_meta_box_nonce'] ), // Input var okay.
+				'quotable_meta_box'
+			) ||
+			! ( current_user_can( 'edit_post', $post_id ) ||
+			current_user_can( 'edit_page', $post_id ) ) ||
+			( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+		) {
+			return $post_id;
+		}
+
+		if ( isset( $_POST['quotable_blockquote_disable'] ) ) { // Input var okay.
+			$quotable_blockquote_disable_value = sanitize_text_field(
+				wp_unslash( $_POST['quotable_blockquote_disable'] ) // Input var okay.
+			);
+			update_post_meta(
+				$post_id,
+				'_quotable_blockquote_disable',
+				$quotable_blockquote_disable_value
+			);
+		} else {
+			update_post_meta( $post_id, '_quotable_blockquote_disable', false );
+		}
+
+		if ( isset( $_POST['quotable_text_disable'] ) ) { // Input var okay.
+			$quotable_text_disable_value = sanitize_text_field(
+				wp_unslash( $_POST['quotable_text_disable'] ) // Input var okay.
+			);
+			update_post_meta(
+				$post_id,
+				'_quotable_text_disable',
+				$quotable_text_disable_value
+			);
+		} else {
+			update_post_meta( $post_id, '_quotable_text_disable', false );
+		}
+
+	}
+
+	/**
 	 * Register the stylesheets for the admin area.
 	 *
 	 * @since    1.0.0
