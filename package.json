@@ -1,0 +1,24 @@
+{
+  "name": "quotable-toolbar",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Quotable toolbar plugin",
+  "main": "build/admin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:admin && npm run build:public",
+    "build:admin": "wp-scripts build admin/js/quotable-toolbar-admin.js --output-path=admin --output-filename=bundle.js",
+    "build:public": "wp-scripts build public/js/quotable-toolbar-public.js --output-path=public --output-filename=bundle.js",
+    "build:watch": "npm run watch:admin && npm run watch:public",
+    "watch:admin": "wp-scripts start admin/js/quotable-toolbar-admin.js --output-path=admin --output-filename=bundle.js",
+    "watch:public": "wp-scripts start public/js/quotable-toolbar-public.js --output-path=public --output-filename=bundle.js"
+  },
+  "author": "Jo Sprague <josiah.sprague@gmail.com>",
+  "license": "GPL-2.0",
+  "dependencies": {
+    "@wordpress/blocks": "^6.14.1"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^8.0.1"
+  }
+}
