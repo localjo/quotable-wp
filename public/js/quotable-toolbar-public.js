@@ -1,5 +1,6 @@
-import quotable from './quotable-plugin';
-
-console.log('Get quotable settings from WordPress', wpQuotable);
-
-quotable('No settings');
+import Quotable from './quotable-plugin';
+window.addEventListener('DOMContentLoaded', (event) => {
+  const settings = wpQuotable;
+  const quotable = new Quotable(settings);
+  quotable.init();
+});
