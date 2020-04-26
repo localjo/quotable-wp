@@ -55,6 +55,42 @@ class Quotable_Toolbar_Public {
 	}
 
 	/**
+	 * Determine which quotable features are active
+	 *
+	 * @return is_active An array of features and booleans
+	 * with their activation state
+	 */
+	public function get_active() {
+		$post_meta = get_post_meta(get_the_ID());
+		$is_post_blockquote_disabled = $post_meta['_quotable_blockquote_disable'][0];
+		$is_post_text_disabled = $post_meta['_quotable_text_disable'][0];
+		$activation = get_option( 'quotable_activation' );
+		$is_blockquote_enabled = isset( $activation['blockquotes'] ) ;
+		$is_text_enabled = isset( $activation['textselection'] ) ;
+		$is_active = array(
+			"blockquotes" => $is_blockquote_enabled && !$is_post_blockquote_disabled,
+			"textSelection" => $is_text_enabled && !$is_post_text_disabled
+		);
+		return $is_active;
+	}
+
+	/**
+	 * Add quotable classname to content
+	 *
+	 * @param str $content the post content passed in by the_content filter.
+	 * @return $content the post content, wrapped in quotablecontent class if active
+	 */
+	public function quotable_filter_content( $content ) {
+		if ( is_singular() && is_main_query() ) {
+			$is_active = $this->get_active();
+			if ($is_active->blockquotes || $is_active->textSelection) {
+				$content = '<div id="quotablecontent">' . $content . '</div>';
+			}
+		}
+		return $content;
+	}
+
+	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
 	 * @since    1.0.0
@@ -92,15 +128,42 @@ class Quotable_Toolbar_Public {
 		 * class.
 		 */
 
+		$script_name = 'quotable-public';
+		$postMeta = get_post_meta(get_the_ID());
+		$host = isset( $_SERVER['HTTP_HOST'] ) // Input var okay.
+			? sanitize_text_field( wp_unslash(
+				$_SERVER['HTTP_HOST'] // Input var okay.
+			) ) : '';
+		$request_uri = isset( $_SERVER['REQUEST_URI'] ) // Input var okay.
+			? sanitize_text_field( wp_unslash(
+				$_SERVER['REQUEST_URI'] // Input var okay.
+			) ) : '';
+		$pageurl     = esc_url_raw(
+			( is_ssl() ? 'https://' : 'http://' ) . $host . $request_uri
+		);
+		$tag_names = function($tag) {
+			return $tag->name;
+		};
+		$tags = array_map($tag_names, get_the_tags());
+		$options = array (
+			"isActive" => $this->get_active(),
+			"authorTwitter"   => get_the_author_meta( 'twitter' ),
+			"siteSocial"  => get_option( 'wpseo_social' ),
+			"tags" => $tags,
+			"pageUrl" => $pageurl
+		);
+
 		$public_bundle = include( plugin_dir_path( __FILE__ ) . 'bundle.asset.php');
 		wp_register_script(
-				'quotable-public',
+				$script_name,
 				plugins_url( 'bundle.js', __FILE__ ),
 				$public_bundle['dependencies'],
 				$public_bundle['version']
 		);
 
-		wp_enqueue_script( 'quotable-public' );
+		wp_enqueue_script( $script_name );
+
+		wp_localize_script( $script_name, 'wpQuotable', $options );
 
 	}
 
