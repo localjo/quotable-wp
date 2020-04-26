@@ -83,7 +83,7 @@ class Quotable_Toolbar_Public {
 	public function quotable_filter_content( $content ) {
 		if ( is_singular() && is_main_query() ) {
 			$is_active = $this->get_active();
-			if ($is_active->blockquotes || $is_active->textSelection) {
+			if ($is_active['blockquotes'] || $is_active['textSelection']) {
 				$content = '<div id="quotablecontent">' . $content . '</div>';
 			}
 		}
@@ -144,7 +144,7 @@ class Quotable_Toolbar_Public {
 		$tag_names = function($tag) {
 			return $tag->name;
 		};
-		$tags = array_map($tag_names, get_the_tags());
+		$tags = get_the_tags() ? array_map($tag_names, get_the_tags()) : array();
 		$options = array (
 			"isActive" => $this->get_active(),
 			"authorTwitter"   => get_the_author_meta( 'twitter' ),
