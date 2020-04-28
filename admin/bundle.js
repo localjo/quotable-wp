@@ -116,7 +116,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var QuotableMetaBox = function QuotableMetaBox(_ref) {
   var isBlockquotesEnabled = _ref.isBlockquotesEnabled,
-      isTextSelectionEnabled = _ref.isTextSelectionEnabled;
+      isTextSelectionEnabled = _ref.isTextSelectionEnabled,
+      onBlockquotesChange = _ref.onBlockquotesChange,
+      onTextSelectionChange = _ref.onTextSelectionChange;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_edit_post__WEBPACK_IMPORTED_MODULE_1__["PluginDocumentSettingPanel"], {
     name: "quotable-panel",
     title: "Quotable"
@@ -125,22 +127,14 @@ var QuotableMetaBox = function QuotableMetaBox(_ref) {
     help: isBlockquotesEnabled ? 'Quotable links will be added to blockquotes.' : 'Quotable links will not be added to blockquotes.',
     checked: isBlockquotesEnabled,
     onChange: function onChange() {
-      return Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["dispatch"])('core/editor').editPost({
-        meta: {
-          _quotable_blockquote_disable: isBlockquotesEnabled
-        }
-      });
+      return onBlockquotesChange(isBlockquotesEnabled);
     }
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["ToggleControl"], {
     label: "Text Selection Enabled",
     help: isTextSelectionEnabled ? 'Quotable toolbar will appear when text is selected.' : 'Quotable toolbar is disabled.',
     checked: isTextSelectionEnabled,
     onChange: function onChange() {
-      return Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["dispatch"])('core/editor').editPost({
-        meta: {
-          _quotable_text_disable: isTextSelectionEnabled
-        }
-      });
+      return onTextSelectionChange(isTextSelectionEnabled);
     }
   }));
 };
@@ -150,6 +144,24 @@ QuotableMetaBox = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["withSelec
   return {
     isBlockquotesEnabled: !meta._quotable_blockquote_disable,
     isTextSelectionEnabled: !meta._quotable_text_disable
+  };
+})(QuotableMetaBox);
+QuotableMetaBox = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["withDispatch"])(function (dispatch) {
+  return {
+    onBlockquotesChange: function onBlockquotesChange(value) {
+      dispatch('core/editor').editPost({
+        meta: {
+          _quotable_blockquote_disable: value
+        }
+      });
+    },
+    onTextSelectionChange: function onTextSelectionChange(value) {
+      dispatch('core/editor').editPost({
+        meta: {
+          _quotable_text_disable: value
+        }
+      });
+    }
   };
 })(QuotableMetaBox);
 Object(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_3__["registerPlugin"])('plugin-quotable', {

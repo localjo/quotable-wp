@@ -1,10 +1,15 @@
 import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 import { ToggleControl } from '@wordpress/components';
 import { registerPlugin } from '@wordpress/plugins';
-import { withSelect, dispatch } from '@wordpress/data';
+import { withSelect, withDispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
-let QuotableMetaBox = ({ isBlockquotesEnabled, isTextSelectionEnabled }) => {
+let QuotableMetaBox = ({
+  isBlockquotesEnabled,
+  isTextSelectionEnabled,
+  onBlockquotesChange,
+  onTextSelectionChange,
+}) => {
   return (
     <PluginDocumentSettingPanel name="quotable-panel" title="Quotable">
       <ToggleControl
@@ -15,11 +20,7 @@ let QuotableMetaBox = ({ isBlockquotesEnabled, isTextSelectionEnabled }) => {
             : 'Quotable links will not be added to blockquotes.'
         }
         checked={isBlockquotesEnabled}
-        onChange={() =>
-          dispatch('core/editor').editPost({
-            meta: { _quotable_blockquote_disable: isBlockquotesEnabled },
-          })
-        }
+        onChange={() => onBlockquotesChange(isBlockquotesEnabled)}
       />
       <ToggleControl
         label="Text Selection Enabled"
@@ -29,11 +30,7 @@ let QuotableMetaBox = ({ isBlockquotesEnabled, isTextSelectionEnabled }) => {
             : 'Quotable toolbar is disabled.'
         }
         checked={isTextSelectionEnabled}
-        onChange={() =>
-          dispatch('core/editor').editPost({
-            meta: { _quotable_text_disable: isTextSelectionEnabled },
-          })
-        }
+        onChange={() => onTextSelectionChange(isTextSelectionEnabled)}
       />
     </PluginDocumentSettingPanel>
   );
@@ -44,6 +41,21 @@ QuotableMetaBox = withSelect((select) => {
   return {
     isBlockquotesEnabled: !meta._quotable_blockquote_disable,
     isTextSelectionEnabled: !meta._quotable_text_disable,
+  };
+})(QuotableMetaBox);
+
+QuotableMetaBox = withDispatch((dispatch) => {
+  return {
+    onBlockquotesChange: (value) => {
+      dispatch('core/editor').editPost({
+        meta: { _quotable_blockquote_disable: value },
+      });
+    },
+    onTextSelectionChange: (value) => {
+      dispatch('core/editor').editPost({
+        meta: { _quotable_text_disable: value },
+      });
+    },
   };
 })(QuotableMetaBox);
 
