@@ -50,6 +50,7 @@ class Quotable_Toolbar_Public {
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
+		$this->container_id = $plugin_name . '-content';
 		$this->version = $version;
 
 	}
@@ -84,7 +85,7 @@ class Quotable_Toolbar_Public {
 		if ( is_singular() && is_main_query() ) {
 			$is_active = $this->get_active();
 			if ($is_active['blockquotes'] || $is_active['textSelection']) {
-				$content = '<div id="quotablecontent">' . $content . '</div>';
+				$content = '<div id="' . $this->container_id . '">' . $content . '</div>';
 			}
 		}
 		return $content;
@@ -145,9 +146,11 @@ class Quotable_Toolbar_Public {
 			return $tag->name;
 		};
 		$tags = get_the_tags() ? array_map($tag_names, get_the_tags()) : array();
+		$post_author_id = get_post_field( 'post_author', $post->ID );
 		$options = array (
+			"containerId" => $this->container_id,
 			"isActive" => $this->get_active(),
-			"authorTwitter"   => get_the_author_meta( 'twitter' ),
+			"authorTwitter"   => get_the_author_meta( 'twitter', $post_author_id ),
 			"siteSocial"  => get_option( 'wpseo_social' ),
 			"tags" => $tags,
 			"pageUrl" => $pageurl
