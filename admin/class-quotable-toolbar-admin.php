@@ -125,7 +125,32 @@ class Quotable_Toolbar_Admin {
 	}
 
 	/**
-	 * Add Quotable metabox
+	 * Register Quotable meta fields
+	 */
+	function quotable_register_post_meta() {
+		$screens = array( 'post', 'page' );
+		foreach ( $screens as $screen ) {
+			register_post_meta( $screen, '_quotable_text_disable', array(
+					'show_in_rest' => true,
+					'single' => true,
+					'type' => 'boolean',
+					'auth_callback' => function() {
+						return current_user_can( 'edit_posts' );
+					}
+			) );
+			register_post_meta( $screen, '_quotable_blockquote_disable', array(
+					'show_in_rest' => true,
+					'single' => true,
+					'type' => 'boolean',
+					'auth_callback' => function() {
+						return current_user_can( 'edit_posts' );
+					}
+			) );
+		}
+	}
+
+	/**
+	 * Add Quotable metabox (for classic editor)
 	 */
 	public function quotable_add_meta_box() {
 		$screens = array( 'post', 'page' );
@@ -134,8 +159,10 @@ class Quotable_Toolbar_Admin {
 				'quotable_sectionid',
 				__( 'Quotable', 'quotable-toolbar' ),
 				array( $this, 'quotable_meta_box_callback' ),
-				$screen,
-				'side'
+				$screen, 
+				'normal', 
+				'default',
+				array('__back_compat_meta_box' => true)
 			);
 		}
 	}
