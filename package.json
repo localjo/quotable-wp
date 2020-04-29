@@ -22,7 +22,7 @@
     "@wordpress/edit-post": "^3.15.1",
     "@wordpress/i18n": "^3.11.0",
     "@wordpress/plugins": "^2.14.1",
-    "quotable-toolbar": "^1.0.0"
+    "quotable-toolbar": "^1.0.3"
   },
   "devDependencies": {
     "@wordpress/scripts": "^8.0.1"
