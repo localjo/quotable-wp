@@ -154,7 +154,6 @@ class Quotable {
 
 		$plugin_admin = new Quotable_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'quotable_settings_init' );
 		$this->loader->add_action( 'plugin_action_links_quotable/quotable.php', $plugin_admin, 'quotable_add_plugin_page_settings_link' );
@@ -180,8 +179,7 @@ class Quotable {
 
 		$plugin_public = new Quotable_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts', 10 );
 		$this->loader->add_filter( 'the_content', $plugin_public, 'quotable_filter_content' );
 
 	}
