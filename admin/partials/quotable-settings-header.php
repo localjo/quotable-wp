@@ -10,4 +10,4 @@
  * @subpackage Quotable/admin/partials
  */
 
-?><p>Enable or disable Quotable features site-wide.</p>
+?><p>Enable or disable Quotable features site-wide. You can also set these preferences on individual posts or pages from their respective editors.</p>

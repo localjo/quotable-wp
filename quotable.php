@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Quotable
  * Plugin URI:        https://iamlocaljo.com
- * Description:       A plugin that helps people share your content via powerful quotes.
+ * Description:       Adds a button for sharing quotes on social networks to blockquotes and to a tooltip on selected text.
  * Version:           2.0.0
  * Author:            Jo Sprague
  * Author URI:        https://iamlocaljo.com

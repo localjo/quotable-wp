@@ -13,22 +13,12 @@ let QuotableMetaBox = ({
   return (
     <PluginDocumentSettingPanel name="quotable-panel" title="Quotable">
       <ToggleControl
-        label="Blockquotes Enabled"
-        help={
-          isBlockquotesEnabled
-            ? 'Quotable links will be added to blockquotes.'
-            : 'Quotable links will not be added to blockquotes.'
-        }
+        label="Add sharing links to blockquotes"
         checked={isBlockquotesEnabled}
         onChange={() => onBlockquotesChange(isBlockquotesEnabled)}
       />
       <ToggleControl
-        label="Text Selection Enabled"
-        help={
-          isTextSelectionEnabled
-            ? 'Quotable toolbar will appear when text is selected.'
-            : 'Quotable toolbar is disabled.'
-        }
+        label="Enable popup toolbar on text selection"
         checked={isTextSelectionEnabled}
         onChange={() => onTextSelectionChange(isTextSelectionEnabled)}
       />

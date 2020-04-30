@@ -100,7 +100,7 @@ class Quotable_Admin {
 
 		add_settings_field(
 			'quotable_activation',
-			'Activate Quotable',
+			'Quotable Features',
 			array( $this, 'quotable_activation_setting_setup' ),
 			'discussion',
 			'quotable_settings'

@@ -19,7 +19,7 @@
     value="1"
     class="code"
     <?php checked( 1, $is_activated['blockquotes'] ) ?>
-  /> Activate Quotable on blockquotes<br>
+  /> Add sharing links to blockquotes<br>
   <input
     name="quotable_activation[textselection]"
     id="quotableActivationText"
@@ -27,5 +27,5 @@
     value="1"
     class="code"
     <?php checked( 1, $is_activated['textselection'] ) ?>
-  /> Activate Quotable on text selection.
+  /> Enable popup toolbar on text selection
 </div>
