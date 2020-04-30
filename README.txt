@@ -3,8 +3,8 @@ Contributors: josiahsprague
 Donate link: https://www.patreon.com/localjo
 Tags: social, quotes, sharing, twitter
 Requires at least: 3.0.1
-Tested up to: 4.9.6
-Stable tag: 1.0.6
+Tested up to: 5.4.1
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,11 @@ Hashtags are generated based on the WordPress tags that were used on the post.
 == Screenshots ==
 1. The plugin will add a quotable button to the end of all blockquotes. When the button is clicked, a new Twitter window is created with the quoted or selected text.
 2. When text is highlighted, the quotable toolbar will show up.
+
+== Upgrade Notice ==
+
+= 2.0.0 =
+This update enables support for the Gutenberg blocks editor.
 
 
 == Changelog ==
