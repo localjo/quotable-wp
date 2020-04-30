@@ -134,6 +134,17 @@ class Quotable_Admin {
 		return $links;
 	}
 
+
+	/**
+	 * Add upgrade notice text to plugin list
+	 */
+	function show_upgrade_notification($existing_metadata, $new_metadata = NULL){
+		if (isset($new_metadata->upgrade_notice) && strlen(trim($new_metadata->upgrade_notice)) > 0){
+			echo '<br><br><strong>Upgrade Notice:</strong> ';
+			echo esc_html($new_metadata->upgrade_notice);
+		}
+ }
+
 	/**
 	 * Register Quotable meta fields
 	 */

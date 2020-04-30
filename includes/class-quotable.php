@@ -158,6 +158,7 @@ class Quotable {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'quotable_settings_init' );
 		$this->loader->add_action( 'plugin_action_links_quotable/quotable.php', $plugin_admin, 'quotable_add_plugin_page_settings_link' );
+		$this->loader->add_action( 'in_plugin_update_message-quotable/quotable.php', $plugin_admin, 'show_upgrade_notification' );
 		$this->loader->add_action( 'init', $plugin_admin, 'quotable_register_post_meta' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'quotable_add_meta_box' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'quotable_save_meta_box_data' );
