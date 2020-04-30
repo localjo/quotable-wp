@@ -165,7 +165,7 @@ class Quotable_Admin {
 	function display_update_notice() {
 		if( get_transient( 'quotable_updated' ) ) {
 			$link = '<a href="' . esc_url( 'https://www.patreon.com/localjo' ) . '">' 
-			. __( 'please consider becoming one of my Patrons.', 'quotable' )
+			. __( 'please consider becoming a Patron.', 'quotable' )
 			. '</a>';
 			echo '<div id="message" class="updated notice is-dismissible"><p>' . __( 'Thank you for updating Quotable. If you\'ve found my plugin useful,', 'quotable' ) . ' ' . $link . '</p></div>';
 			delete_transient( 'quotable_updated' );
@@ -178,7 +178,7 @@ class Quotable_Admin {
 	 function display_install_notice() {
 		if( get_transient( 'quotable_activated' ) ) {
 			$link = '<a href="' . esc_url( 'https://www.patreon.com/localjo' ) . '">' 
-			. __( 'become one of my Patrons.', 'quotable' )
+			. __( 'become a Patron.', 'quotable' )
 			. '</a>';
 			echo '<div id="message" class="updated notice is-dismissible"><p>' . __( 'Thank you for installing Quotable. For exclusive updates,', 'quotable' ) . ' ' . $link . '</p></div>';
 			delete_transient( 'quotable_activated' );
