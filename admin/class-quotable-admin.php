@@ -143,7 +143,47 @@ class Quotable_Admin {
 			echo '<br><br><strong>Upgrade Notice:</strong> ';
 			echo esc_html($new_metadata->upgrade_notice);
 		}
- }
+	}
+
+	/**
+	 * Set upgrade transient value used to trigger admin notice
+	 */
+	function set_upgrade_transient($upgrader_object, $options){
+		$basename = plugin_basename( __FILE__ );
+		if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
+			foreach( $options['plugins'] as $plugin ) {
+				if( $plugin == $basename ) {
+					set_transient( 'quotable_updated', 1 );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Show a notice when the plugin has been updated
+	 */
+	function display_update_notice() {
+		if( get_transient( 'quotable_updated' ) ) {
+			$link = '<a href="' . esc_url( 'https://www.patreon.com/localjo' ) . '">' 
+			. __( 'please consider becoming one of my Patrons.', 'quotable' )
+			. '</a>';
+			echo '<div id="message" class="updated notice is-dismissible"><p>' . __( 'Thank you for updating Quotable. If you\'ve found my plugin useful,', 'quotable' ) . ' ' . $link . '</p></div>';
+			delete_transient( 'quotable_updated' );
+		}
+	 }
+
+	/**
+	 * Show a notice when the plugin has been updated
+	 */
+	 function display_install_notice() {
+		if( get_transient( 'quotable_activated' ) ) {
+			$link = '<a href="' . esc_url( 'https://www.patreon.com/localjo' ) . '">' 
+			. __( 'become one of my Patrons.', 'quotable' )
+			. '</a>';
+			echo '<div id="message" class="updated notice is-dismissible"><p>' . __( 'Thank you for installing Quotable. For exclusive updates,', 'quotable' ) . ' ' . $link . '</p></div>';
+			delete_transient( 'quotable_activated' );
+		}
+	 }
 
 	/**
 	 * Register Quotable meta fields

@@ -23,14 +23,12 @@
 class Quotable_Activator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
+	 * Set transient indicating that plugin was just activated
 	 *
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-
+ 		set_transient( 'quotable_activated', 1 );
 	}
 
 }

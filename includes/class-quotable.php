@@ -163,6 +163,9 @@ class Quotable {
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'quotable_add_meta_box' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'quotable_save_meta_box_data' );
 		$this->loader->add_filter( 'user_contactmethods', $plugin_admin, 'add_twitter_contactmethod' );
+		$this->loader->add_filter( 'upgrader_process_complete', $plugin_admin, 'set_upgrade_transient' );
+		$this->loader->add_filter( 'admin_notices', $plugin_admin, 'display_update_notice' );
+		$this->loader->add_filter( 'admin_notices', $plugin_admin, 'display_install_notice' );
 
 	}
 
