@@ -6,8 +6,8 @@
  * @link       https://iamlocaljo.com
  * @since      1.0.0
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/public
+ * @package    Quotable
+ * @subpackage Quotable/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/public
+ * @package    Quotable
+ * @subpackage Quotable/public
  * @author     Jo Sprague <josiah.sprague@gmail.com>
  */
-class Quotable_Toolbar_Public {
+class Quotable_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -100,15 +100,15 @@ class Quotable_Toolbar_Public {
 
 		/**
 		 * An instance of this class should be passed to the run() function
-		 * defined in Quotable_Toolbar_Loader as all of the hooks are defined
+		 * defined in Quotable_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Quotable_Toolbar_Loader will then create the relationship
+		 * The Quotable_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/quotable-toolbar-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/quotable-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -121,10 +121,10 @@ class Quotable_Toolbar_Public {
 
 		/**
 		 * An instance of this class should be passed to the run() function
-		 * defined in Quotable_Toolbar_Loader as all of the hooks are defined
+		 * defined in Quotable_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Quotable_Toolbar_Loader will then create the relationship
+		 * The Quotable_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */

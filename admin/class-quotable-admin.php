@@ -6,8 +6,8 @@
  * @link       https://iamlocaljo.com
  * @since      1.0.0
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/admin
+ * @package    Quotable
+ * @subpackage Quotable/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/admin
+ * @package    Quotable
+ * @subpackage Quotable/admin
  * @author     Jo Sprague <josiah.sprague@gmail.com>
  */
-class Quotable_Toolbar_Admin {
+class Quotable_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -125,6 +125,16 @@ class Quotable_Toolbar_Admin {
 	}
 
 	/**
+	 * Add link to Quotable settings from plugin list
+	 */
+	function quotable_add_plugin_page_settings_link( $links ) {
+		$links[] = '<a href="' .
+			admin_url( 'options-discussion.php#quotable-settings' ) .
+			'">' . __('Settings') . '</a>';
+		return $links;
+	}
+
+	/**
 	 * Register Quotable meta fields
 	 */
 	function quotable_register_post_meta() {
@@ -157,7 +167,7 @@ class Quotable_Toolbar_Admin {
 		foreach ( $screens as $screen ) {
 			add_meta_box(
 				'quotable_sectionid',
-				__( 'Quotable', 'quotable-toolbar' ),
+				__( 'Quotable', 'quotable' ),
 				array( $this, 'quotable_meta_box_callback' ),
 				$screen, 
 				'normal', 
@@ -244,15 +254,15 @@ class Quotable_Toolbar_Admin {
 
 		/**
 		 * An instance of this class should be passed to the run() function
-		 * defined in Quotable_Toolbar_Loader as all of the hooks are defined
+		 * defined in Quotable_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Quotable_Toolbar_Loader will then create the relationship
+		 * The Quotable_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/quotable-toolbar-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/quotable-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -265,10 +275,10 @@ class Quotable_Toolbar_Admin {
 
 		/**
 		 * An instance of this class should be passed to the run() function
-		 * defined in Quotable_Toolbar_Loader as all of the hooks are defined
+		 * defined in Quotable_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Quotable_Toolbar_Loader will then create the relationship
+		 * The Quotable_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */

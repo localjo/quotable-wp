@@ -9,8 +9,8 @@
  * @link       https://iamlocaljo.com
  * @since      1.0.0
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/includes
+ * @package    Quotable
+ * @subpackage Quotable/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/includes
+ * @package    Quotable
+ * @subpackage Quotable/includes
  * @author     Jo Sprague <josiah.sprague@gmail.com>
  */
-class Quotable_Toolbar_i18n {
+class Quotable_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Quotable_Toolbar_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'quotable-toolbar',
+			'quotable',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

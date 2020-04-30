@@ -22,7 +22,7 @@
  * @link       https://iamlocaljo.com
  * @since      1.0.0
  *
- * @package    Quotable_Toolbar
+ * @package    Quotable
  */
 
 // If uninstall not called from WordPress, then exit.

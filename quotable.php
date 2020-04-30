@@ -10,10 +10,10 @@
  *
  * @link              https://iamlocaljo.com
  * @since             1.0.0
- * @package           Quotable_Toolbar
+ * @package           Quotable
  *
  * @wordpress-plugin
- * Plugin Name:       Quotable Toolbar
+ * Plugin Name:       Quotable
  * Plugin URI:        https://iamlocaljo.com
  * Description:       A plugin that helps people share your content via powerful quotes.
  * Version:           2.0.0
@@ -21,7 +21,7 @@
  * Author URI:        https://iamlocaljo.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       quotable-toolbar
+ * Text Domain:       quotable
  * Domain Path:       /languages
  */
 
@@ -30,34 +30,34 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'QUOTABLE_TOOLBAR_VERSION', '2.0.0' );
+define( 'QUOTABLE_VERSION', '2.0.0' );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-quotable-toolbar-activator.php
+ * This action is documented in includes/class-quotable-activator.php
  */
-function activate_quotable_toolbar() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-quotable-toolbar-activator.php';
-	Quotable_Toolbar_Activator::activate();
+function activate_quotable() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-quotable-activator.php';
+	Quotable_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-quotable-toolbar-deactivator.php
+ * This action is documented in includes/class-quotable-deactivator.php
  */
-function deactivate_quotable_toolbar() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-quotable-toolbar-deactivator.php';
-	Quotable_Toolbar_Deactivator::deactivate();
+function deactivate_quotable() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-quotable-deactivator.php';
+	Quotable_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_quotable_toolbar' );
-register_deactivation_hook( __FILE__, 'deactivate_quotable_toolbar' );
+register_activation_hook( __FILE__, 'activate_quotable' );
+register_deactivation_hook( __FILE__, 'deactivate_quotable' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-quotable-toolbar.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-quotable.php';
 
 /**
  * Begins execution of the plugin.
@@ -68,10 +68,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-quotable-toolbar.php';
  *
  * @since    1.0.0
  */
-function run_quotable_toolbar() {
+function run_quotable() {
 
-	$plugin = new Quotable_Toolbar();
+	$plugin = new Quotable();
 	$plugin->run();
 
 }
-run_quotable_toolbar();
+run_quotable();

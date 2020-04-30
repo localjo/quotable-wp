@@ -6,8 +6,8 @@
  * @link       http://iamlocaljo.com
  * @since      2.0.0
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/admin/partials
+ * @package    Quotable
+ * @subpackage Quotable/admin/partials
  */
 
 ?><p>Enable or disable Quotable features site-wide.</p>

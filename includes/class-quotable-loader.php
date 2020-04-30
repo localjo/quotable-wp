@@ -6,8 +6,8 @@
  * @link       https://iamlocaljo.com
  * @since      1.0.0
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/includes
+ * @package    Quotable
+ * @subpackage Quotable/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/includes
+ * @package    Quotable
+ * @subpackage Quotable/includes
  * @author     Jo Sprague <josiah.sprague@gmail.com>
  */
-class Quotable_Toolbar_Loader {
+class Quotable_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

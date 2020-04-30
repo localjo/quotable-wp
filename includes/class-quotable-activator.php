@@ -6,8 +6,8 @@
  * @link       https://iamlocaljo.com
  * @since      1.0.0
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/includes
+ * @package    Quotable
+ * @subpackage Quotable/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/includes
+ * @package    Quotable
+ * @subpackage Quotable/includes
  * @author     Jo Sprague <josiah.sprague@gmail.com>
  */
-class Quotable_Toolbar_Activator {
+class Quotable_Activator {
 
 	/**
 	 * Short Description. (use period)

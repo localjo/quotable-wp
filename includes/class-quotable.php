@@ -9,8 +9,8 @@
  * @link       https://iamlocaljo.com
  * @since      1.0.0
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/includes
+ * @package    Quotable
+ * @subpackage Quotable/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/includes
+ * @package    Quotable
+ * @subpackage Quotable/includes
  * @author     Jo Sprague <josiah.sprague@gmail.com>
  */
-class Quotable_Toolbar {
+class Quotable {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Quotable_Toolbar {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Quotable_Toolbar_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Quotable_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -67,12 +67,12 @@ class Quotable_Toolbar {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'QUOTABLE_TOOLBAR_VERSION' ) ) {
-			$this->version = QUOTABLE_TOOLBAR_VERSION;
+		if ( defined( 'QUOTABLE_VERSION' ) ) {
+			$this->version = QUOTABLE_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'quotable-toolbar';
+		$this->plugin_name = 'quotable';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -86,10 +86,10 @@ class Quotable_Toolbar {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Quotable_Toolbar_Loader. Orchestrates the hooks of the plugin.
-	 * - Quotable_Toolbar_i18n. Defines internationalization functionality.
-	 * - Quotable_Toolbar_Admin. Defines all hooks for the admin area.
-	 * - Quotable_Toolbar_Public. Defines all hooks for the public side of the site.
+	 * - Quotable_Loader. Orchestrates the hooks of the plugin.
+	 * - Quotable_i18n. Defines internationalization functionality.
+	 * - Quotable_Admin. Defines all hooks for the admin area.
+	 * - Quotable_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -103,33 +103,33 @@ class Quotable_Toolbar {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-quotable-toolbar-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-quotable-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-quotable-toolbar-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-quotable-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-quotable-toolbar-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-quotable-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-quotable-toolbar-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-quotable-public.php';
 
-		$this->loader = new Quotable_Toolbar_Loader();
+		$this->loader = new Quotable_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Quotable_Toolbar_i18n class in order to set the domain and to register the hook
+	 * Uses the Quotable_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +137,7 @@ class Quotable_Toolbar {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Quotable_Toolbar_i18n();
+		$plugin_i18n = new Quotable_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -152,11 +152,12 @@ class Quotable_Toolbar {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Quotable_Toolbar_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Quotable_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'quotable_settings_init' );
+		$this->loader->add_action( 'plugin_action_links_quotable/quotable.php', $plugin_admin, 'quotable_add_plugin_page_settings_link' );
 		$this->loader->add_action( 'init', $plugin_admin, 'quotable_register_post_meta' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'quotable_add_meta_box' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'quotable_save_meta_box_data' );
@@ -173,7 +174,7 @@ class Quotable_Toolbar {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Quotable_Toolbar_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Quotable_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -205,7 +206,7 @@ class Quotable_Toolbar {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Quotable_Toolbar_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Quotable_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

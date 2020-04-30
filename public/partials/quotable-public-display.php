@@ -8,8 +8,8 @@
  * @link       https://iamlocaljo.com
  * @since      1.0.0
  *
- * @package    Quotable_Toolbar
- * @subpackage Quotable_Toolbar/public/partials
+ * @package    Quotable
+ * @subpackage Quotable/public/partials
  */
 ?>
 

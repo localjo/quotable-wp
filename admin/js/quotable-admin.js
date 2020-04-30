@@ -63,3 +63,11 @@ registerPlugin('plugin-quotable', {
   icon: 'format-quote',
   render: QuotableMetaBox,
 });
+
+jQuery('document').ready(function($) {
+  if (window.location.hash === '#quotable-settings') {
+    $('#quotable-settings')
+      .closest('table')
+      .addClass('highlight');
+  }
+});
