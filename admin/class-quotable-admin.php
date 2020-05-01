@@ -335,6 +335,7 @@ class Quotable_Admin {
 			"textSelection" => $is_text_enabled && !$is_post_text_disabled
 		);
 		wp_localize_script( 'quotable-admin', 'quotableActive', $is_active );
+		wp_set_script_translations( 'quotable-admin', 'quotable', plugin_dir_path( dirname(__FILE__) ) . 'languages' );
 	}
 
 	/**

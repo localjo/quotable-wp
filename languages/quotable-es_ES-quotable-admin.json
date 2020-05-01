@@ -1,0 +1,27 @@
+{
+  "translation-revision-date": "2020-05-01 21:26+0100",
+  "generator": "WP-CLI/2.5.0-alpha",
+  "source": "admin/js/quotable-admin.js",
+  "domain": "quotable",
+  "locale_data": {
+    "quotable": {
+      "": {
+        "domain": "quotable",
+        "lang": "es-es",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Enable popup toolbar on text selection": [
+        "Habilitar herramientas contextuales cuando se selecciona texto"
+      ],
+      "Add sharing links to blockquotes": [
+        "A\u00f1adir enlaces a los de citas de bloque"
+      ],
+      "Placeholders are shown in the editor in the places where\n              Quotable links will be added to content on the front end.\n              You must refresh the editor after changing this setting\n              for placeholders to update.": [
+        "Los marcadores de posici\u00f3n se muestran en el editor en los lugares donde los enlaces de Quotable se agregar\u00e1n al contenido publico. Hay que recargar el editor despu\u00e9s de cambiar este ajuste para que los marcadores se actualicen."
+      ],
+      "Use Page Default": ["Usar el valor defecto de la p\u00e1gina"],
+      "Show": ["Mostrar"],
+      "Hide": ["Esconder"]
+    }
+  }
+}
