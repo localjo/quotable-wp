@@ -148,7 +148,7 @@ class Quotable_Admin {
 	/**
 	 * Set upgrade transient value used to trigger admin notice
 	 */
-	function set_upgrade_transient($upgrader_object, $options){
+	function set_upgrade_transient($upgrader_object, $options = NULL){
 		$basename = plugin_basename( __FILE__ );
 		if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
 			foreach( $options['plugins'] as $plugin ) {
