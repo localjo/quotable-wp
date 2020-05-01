@@ -19,7 +19,7 @@
     value="1"
     class="code"
     <?php checked( 1, $is_activated['blockquotes'] ) ?>
-  /> <?php esc_html_e( 'Add sharing links to blockquotes', 'quotable' ) ?><br>
+  /> <?php esc_html_e( 'Add sharing links to blockquotes', 'quotable' ) ?><br><br>
   <input
     name="quotable_activation[textselection]"
     id="quotableActivationText"
