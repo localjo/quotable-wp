@@ -93,14 +93,14 @@ class Quotable_Admin {
 
 		add_settings_section(
 			'quotable_settings',
-			'Quotable',
+			__('Quotable', 'quotable'),
 			array( $this, 'quotable_settings_section_setup' ),
 			'discussion'
 		);
 
 		add_settings_field(
 			'quotable_activation',
-			'Quotable Features',
+			__('Quotable Features', 'quotable'),
 			array( $this, 'quotable_activation_setting_setup' ),
 			'discussion',
 			'quotable_settings'
@@ -130,7 +130,7 @@ class Quotable_Admin {
 	function quotable_add_plugin_page_settings_link( $links ) {
 		$links[] = '<a href="' .
 			admin_url( 'options-discussion.php#quotable-settings' ) .
-			'">' . __('Settings') . '</a>';
+			'">' . __('Settings', 'quotable') . '</a>';
 		return $links;
 	}
 
@@ -140,7 +140,7 @@ class Quotable_Admin {
 	 */
 	function show_upgrade_notification($existing_metadata, $new_metadata = NULL){
 		if (isset($new_metadata->upgrade_notice) && strlen(trim($new_metadata->upgrade_notice)) > 0){
-			echo '<br><br><strong>Upgrade Notice:</strong> ';
+			echo '<br><br><strong>'. __('Upgrade Notice', 'quotable') . ':</strong> ';
 			echo esc_html($new_metadata->upgrade_notice);
 		}
 	}
@@ -164,10 +164,9 @@ class Quotable_Admin {
 	 */
 	function display_update_notice() {
 		if( get_transient( 'quotable_updated' ) ) {
-			$link = '<a href="' . esc_url( 'https://www.patreon.com/localjo' ) . '">' 
-			. __( 'please consider becoming a Patron.', 'quotable' )
-			. '</a>';
-			echo '<div id="message" class="updated notice is-dismissible"><p>' . __( 'Thank you for updating Quotable. If you\'ve found my plugin useful,', 'quotable' ) . ' ' . $link . '</p></div>';
+			$url = 'https://www.patreon.com/localjo';
+			$message = sprintf(__('Thank you for updating Quotable. If you\'ve found my plugin useful, <a href="%s">please consider becoming a Patron.</a>', 'quotable'), $url);
+			echo '<div id="message" class="updated notice is-dismissible"><p>' . $message . '</p></div>';
 			delete_transient( 'quotable_updated' );
 		}
 	 }
@@ -177,10 +176,9 @@ class Quotable_Admin {
 	 */
 	 function display_install_notice() {
 		if( get_transient( 'quotable_activated' ) ) {
-			$link = '<a href="' . esc_url( 'https://www.patreon.com/localjo' ) . '">' 
-			. __( 'become a Patron.', 'quotable' )
-			. '</a>';
-			echo '<div id="message" class="updated notice is-dismissible"><p>' . __( 'Thank you for installing Quotable. For exclusive updates,', 'quotable' ) . ' ' . $link . '</p></div>';
+			$url = 'https://www.patreon.com/localjo';
+			$message = sprintf(__('Thank you for installing Quotable. For exclusive updates, <a href="%s">become a Patron.</a>', 'quotable'), $url);
+			echo '<div id="message" class="updated notice is-dismissible"><p>' . $message . '</p></div>';
 			delete_transient( 'quotable_activated' );
 		}
 	 }

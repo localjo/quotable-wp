@@ -20,7 +20,7 @@ let QuotableMetaBox = ({
     <PluginDocumentSettingPanel name="quotable-panel" title="Quotable">
       {hasTextSelection && (
         <ToggleControl
-          label="Enable popup toolbar on text selection"
+          label={__('Enable popup toolbar on text selection', 'quotable')}
           checked={isTextSelectionEnabled}
           onChange={() => onTextSelectionChange(isTextSelectionEnabled)}
         />
@@ -28,14 +28,18 @@ let QuotableMetaBox = ({
       {hasBlockquotes && (
         <div>
           <ToggleControl
-            label="Add sharing links to blockquotes"
+            label={__('Add sharing links to blockquotes', 'quotable')}
             checked={isBlockquotesEnabled}
             onChange={() => onBlockquotesChange(isBlockquotesEnabled)}
           />
           <p>
-            Placeholders are shown in the editor in the places where Quotable
-            links will be added to content on the front end. You must refresh
-            the editor after changing this setting for placeholders to update.
+            {__(
+              `Placeholders are shown in the editor in the places where
+              Quotable links will be added to content on the front end.
+              You must refresh the editor after changing this setting
+              for placeholders to update.`,
+              'quotable'
+            )}
           </p>
         </div>
       )}
@@ -83,15 +87,15 @@ const quoteBlocks = ['core/quote', 'core/pullquote'];
 
 const quotableEnabledOptions = [
   {
-    label: __('Use Page Default'),
+    label: __('Use Page Default', 'quotable'),
     value: '',
   },
   {
-    label: __('Show'),
+    label: __('Show', 'quotable'),
     value: 'enabled',
   },
   {
-    label: __('Hide'),
+    label: __('Hide', 'quotable'),
     value: 'disabled',
   },
 ];
@@ -137,9 +141,9 @@ const withQuotableControl = createHigherOrderComponent((BlockEdit) => {
       <Fragment>
         <BlockEdit {...props} />
         <InspectorControls>
-          <PanelBody title={__('Quotable')} initialOpen={true}>
+          <PanelBody title={__('Quotable', 'quotable')} initialOpen={true}>
             <SelectControl
-              label={__('Show link on this quote')}
+              label={__('Show link on this quote', 'quotable')}
               value={quotableEnabled}
               options={quotableEnabledOptions}
               onChange={(selectedOption) => {
@@ -149,8 +153,11 @@ const withQuotableControl = createHigherOrderComponent((BlockEdit) => {
               }}
             />
             <p>
-              Placeholders are shown in the editor in the places where Quotable
-              links will be added to content on the front end.
+              {__(
+                `Placeholders are shown in the editor in the places where
+              Quotable links will be added to content on the front end.`,
+                'quotable'
+              )}
             </p>
           </PanelBody>
         </InspectorControls>
