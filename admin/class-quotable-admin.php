@@ -87,7 +87,7 @@ class Quotable_Admin {
 		if ( false === get_option( 'quotable_activation' ) ) {
 			add_option(
 				'quotable_activation',
-				apply_filters( 'quotable_default_settings', quotable_default_settings() )
+				apply_filters( 'quotable_default_settings', $this->quotable_default_settings() )
 			);
 		}
 
