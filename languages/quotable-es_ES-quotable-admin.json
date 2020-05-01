@@ -19,7 +19,11 @@
       "Placeholders are shown in the editor in the places where\n              Quotable links will be added to content on the front end.\n              You must refresh the editor after changing this setting\n              for placeholders to update.": [
         "Los marcadores de posici\u00f3n se muestran en el editor en los lugares donde los enlaces de Quotable se agregar\u00e1n al contenido publico. Hay que recargar el editor despu\u00e9s de cambiar este ajuste para que los marcadores se actualicen."
       ],
+      "Placeholders are shown in the editor in the places where\n              Quotable links will be added to content on the front end.": [
+        "Los marcadores de posici\u00f3n se muestran en el editor en los lugares donde los enlaces de Quotable se agregar\u00e1n al contenido publico."
+      ],
       "Use Page Default": ["Usar el valor defecto de la p\u00e1gina"],
+      "Show link on this quote": ["Mostrar enlance en este cita de bloque"],
       "Show": ["Mostrar"],
       "Hide": ["Esconder"]
     }
