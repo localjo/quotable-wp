@@ -328,6 +328,15 @@ class Quotable_Admin {
 				$admin_bundle['version']
 		);
 		wp_enqueue_script( 'quotable-admin' );
+
+		$activation = get_option( 'quotable_activation' );
+		$is_blockquote_enabled = isset( $activation['blockquotes'] ) ;
+		$is_text_enabled = isset( $activation['textselection'] ) ;
+		$is_active = array(
+			"blockquotes" => $is_blockquote_enabled && !$is_post_blockquote_disabled,
+			"textSelection" => $is_text_enabled && !$is_post_text_disabled
+		);
+		wp_localize_script( 'quotable-admin', 'quotableActive', $is_active );
 	}
 
 	/**
