@@ -155,6 +155,7 @@ class Quotable {
 		$plugin_admin = new Quotable_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'quotable_settings_init' );
 		$this->loader->add_action( 'plugin_action_links_quotable/quotable.php', $plugin_admin, 'quotable_add_plugin_page_settings_link' );
 		$this->loader->add_action( 'in_plugin_update_message-quotable/quotable.php', $plugin_admin, 'show_upgrade_notification' );
@@ -165,6 +166,7 @@ class Quotable {
 		$this->loader->add_filter( 'upgrader_process_complete', $plugin_admin, 'set_upgrade_transient' );
 		$this->loader->add_filter( 'admin_notices', $plugin_admin, 'display_update_notice' );
 		$this->loader->add_filter( 'admin_notices', $plugin_admin, 'display_install_notice' );
+		$this->loader->add_filter( 'admin_body_class', $plugin_admin, 'add_quotable_status_classes' );
 
 	}
 

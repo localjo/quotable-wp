@@ -2,7 +2,7 @@ import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 import { ToggleControl, PanelBody, SelectControl } from '@wordpress/components';
 import { registerPlugin } from '@wordpress/plugins';
 import { addFilter } from '@wordpress/hooks';
-import { InspectorControls } from '@wordpress/editor';
+import { InspectorControls } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { withSelect, withDispatch } from '@wordpress/data';
@@ -103,13 +103,23 @@ addFilter(
   addQuotableAttribute
 );
 
+const getQuotableClassNames = (quotableStatus = '', className = '') => {
+  const cleanClassName = className.replace(
+    /quotable-quote-(enabled|disabled)/g,
+    ''
+  );
+  if (quotableStatus.length < 1) return cleanClassName;
+  return `${cleanClassName} quotable-quote-${quotableStatus}`;
+};
+
 const withQuotableControl = createHigherOrderComponent((BlockEdit) => {
   return (props) => {
     if (!quoteBlocks.includes(props.name)) return <BlockEdit {...props} />;
-    const { quotableEnabled } = props.attributes;
-    if (quotableEnabled && quotableEnabled.length > 0) {
-      props.attributes.className = `quotable-quote-${quotableEnabled}`;
-    }
+    const { quotableEnabled, className } = props.attributes;
+    props.attributes.className = getQuotableClassNames(
+      quotableEnabled,
+      className
+    );
     return (
       <Fragment>
         <BlockEdit {...props} />
@@ -136,23 +146,4 @@ addFilter(
   'editor.BlockEdit',
   'quotable/with-quotable-control',
   withQuotableControl
-);
-
-const addQuotableProps = (saveElementProps, blockType, attributes) => {
-  if (!quoteBlocks.includes(blockType.name)) return saveElementProps;
-  const { quotableEnabled } = attributes;
-  if (quotableEnabled.length < 1) return saveElementProps;
-  const { className } = saveElementProps;
-  const newClassName = `quotable-quote-${quotableEnabled}`;
-  if (className.includes(newClassName)) return saveElementProps;
-  return {
-    ...saveElementProps,
-    className: `${className} ${newClassName}`,
-  };
-};
-
-addFilter(
-  'blocks.getSaveContent.extraProps',
-  'quotable/add-extra-props',
-  addQuotableProps
 );

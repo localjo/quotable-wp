@@ -1,0 +1,16 @@
+.quotable-active blockquote p:after, .quotable-quote-enabled blockquote p:after, blockquote.quotable-quote-enabled p:after {
+  content: url(twitter.svg);
+  display: inline-block;
+  opacity: 0.3;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  margin: 0 0.2em;
+  padding-top: 0.1em;
+  overflow: hidden;
+}
+
+.quotable-quote-disabled blockquote p:after, blockquote.quotable-quote-disabled p:after {
+  /* Never show bird on disabled quotes */
+  content: none;
+}

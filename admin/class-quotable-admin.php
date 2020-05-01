@@ -297,22 +297,29 @@ class Quotable_Admin {
 	}
 
 	/**
+	 * Add quotable status classes to admin body
+	 * Used for editor styles
+	 *
+	 * @since    2.0.0
+	 */
+	public function add_quotable_status_classes($classes) {
+		$post_meta = get_post_meta(get_the_ID());
+		$is_post_blockquote_disabled = $post_meta['_quotable_blockquote_disable'][0];
+		$activation = get_option( 'quotable_activation' );
+		$is_blockquote_enabled = isset( $activation['blockquotes'] ) ;
+		$is_active = $is_blockquote_enabled && !$is_post_blockquote_disabled;
+		if ($is_active) {
+			$classes = $classes . ' quotable-active';
+		}
+		return $classes;
+	}
+
+	/**
 	 * Register the JavaScript for the admin area.
 	 *
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * An instance of this class should be passed to the run() function
-		 * defined in Quotable_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Quotable_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		$admin_bundle = include( plugin_dir_path( __FILE__ ) . 'bundle.asset.php');
 		wp_register_script(
 				'quotable-admin',
@@ -320,9 +327,16 @@ class Quotable_Admin {
 				$admin_bundle['dependencies'],
 				$admin_bundle['version']
 		);
-
 		wp_enqueue_script( 'quotable-admin' );
+	}
 
+	/**
+	 * Register the styles for the block editor
+	 *
+	 * @since    2.0.0
+	 */
+	public function enqueue_styles() {
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/quotable-editor.css', array(), $this->version, 'all' );
 	}
 
 }
