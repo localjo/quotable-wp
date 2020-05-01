@@ -11,12 +11,16 @@ window.addEventListener('DOMContentLoaded', () => {
   } = wpQuotable;
   const quotableToolbar = new Quotable({
     selector: `#${containerId}`,
-    isActive,
+    isActive: {
+      ...isActive,
+      include: ['.quotable-quote-enabled'],
+      exclude: ['.quotable-quote-disabled'],
+    },
     url: pageUrl,
     twitter: {
       via: authorTwitter,
       related: siteSocial && siteSocial.twitter_site,
-      hashtags: tags,
+      hashtags: [...tags, 'quotable'],
     },
   });
   quotableToolbar.activate();
