@@ -13,8 +13,14 @@ window.addEventListener('DOMContentLoaded', () => {
     selector: `#${containerId}`,
     isActive: {
       ...isActive,
-      include: ['.quotable-quote-enabled'],
-      exclude: ['.quotable-quote-disabled'],
+      include: [
+        '.quotable-quote-enabled',
+        '.quotable-quote-enabled blockquote',
+      ],
+      exclude: [
+        '.quotable-quote-disabled',
+        '.quotable-quote-disabled blockquote',
+      ],
     },
     url: pageUrl,
     twitter: {
