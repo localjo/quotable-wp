@@ -187,24 +187,26 @@ class Quotable_Admin {
 	 * Register Quotable meta fields
 	 */
 	function quotable_register_post_meta() {
-		$screens = array( 'post', 'page' );
-		foreach ( $screens as $screen ) {
-			register_post_meta( $screen, '_quotable_text_disable', array(
-					'show_in_rest' => true,
-					'single' => true,
-					'type' => 'boolean',
-					'auth_callback' => function() {
-						return current_user_can( 'edit_posts' );
-					}
-			) );
-			register_post_meta( $screen, '_quotable_blockquote_disable', array(
-					'show_in_rest' => true,
-					'single' => true,
-					'type' => 'boolean',
-					'auth_callback' => function() {
-						return current_user_can( 'edit_posts' );
-					}
-			) );
+		if (function_exists('register_post_meta')) {
+			$screens = array( 'post', 'page' );
+			foreach ( $screens as $screen ) {
+				register_post_meta( $screen, '_quotable_text_disable', array(
+						'show_in_rest' => true,
+						'single' => true,
+						'type' => 'boolean',
+						'auth_callback' => function() {
+							return current_user_can( 'edit_posts' );
+						}
+				) );
+				register_post_meta( $screen, '_quotable_blockquote_disable', array(
+						'show_in_rest' => true,
+						'single' => true,
+						'type' => 'boolean',
+						'auth_callback' => function() {
+							return current_user_can( 'edit_posts' );
+						}
+				) );
+			}
 		}
 	}
 
@@ -335,7 +337,9 @@ class Quotable_Admin {
 			"textSelection" => $is_text_enabled && !$is_post_text_disabled
 		);
 		wp_localize_script( 'quotable-admin', 'quotableActive', $is_active );
-		wp_set_script_translations( 'quotable-admin', 'quotable', plugin_dir_path( dirname(__FILE__) ) . 'languages' );
+		if (function_exists('wp_set_script_translations')) {
+			wp_set_script_translations( 'quotable-admin', 'quotable', plugin_dir_path( dirname(__FILE__) ) . 'languages' );
+		}
 	}
 
 	/**
