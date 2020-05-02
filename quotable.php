@@ -1,12 +1,6 @@
 <?php
 
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
  *
  * @link              https://iamlocaljo.com
  * @since             1.0.0
@@ -15,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name:       Quotable
  * Plugin URI:        https://iamlocaljo.com
- * Description:       Adds a button for sharing quotes on social networks to blockquotes and to a tooltip on selected text.
+ * Description:       Adds buttons to quotes and text selection that make it quick and easy for your readers to share quotes from your website.
  * Version:           2.0.0
  * Author:            Jo Sprague
  * Author URI:        https://iamlocaljo.com

@@ -2,7 +2,7 @@
   "name": "quotable-wp",
   "private": true,
   "version": "2.0.0",
-  "description": "Quotable toolbar plugin for WordPress",
+  "description": "Adds buttons to quotes and text selection that make it quick and easy for your readers to share quotes from your WordPress website.",
   "main": "build/admin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
