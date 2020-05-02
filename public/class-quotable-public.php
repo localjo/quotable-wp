@@ -136,6 +136,7 @@ class Quotable_Public {
 		);
 
 		$public_bundle = include( plugin_dir_path( __FILE__ ) . 'bundle.asset.php');
+		wp_register_script('wp-polyfill', null); // Script won't load in old WP if we don't register dependencies first
 		wp_register_script(
 				$script_name,
 				plugins_url( 'bundle.js', __FILE__ ),
