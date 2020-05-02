@@ -1,6 +1,6 @@
 <?php
-
 /**
+ * Plugin entry point
  *
  * @link              https://iamlocaljo.com
  * @since             1.0.0

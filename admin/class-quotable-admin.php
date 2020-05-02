@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -44,13 +43,13 @@ class Quotable_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of this plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -71,7 +70,7 @@ class Quotable_Admin {
 	/**
 	 * Set default settings for quotable
 	 */
-	function quotable_default_settings() {
+	public function quotable_default_settings() {
 		$defaults = array(
 			'blockquotes'   => true,
 			'textselection' => true,
@@ -93,14 +92,14 @@ class Quotable_Admin {
 
 		add_settings_section(
 			'quotable_settings',
-			__('Quotable', 'quotable'),
+			__( 'Quotable', 'quotable' ),
 			array( $this, 'quotable_settings_section_setup' ),
 			'discussion'
 		);
 
 		add_settings_field(
 			'quotable_activation',
-			__('Quotable Features', 'quotable'),
+			__( 'Quotable Features', 'quotable' ),
 			array( $this, 'quotable_activation_setting_setup' ),
 			'discussion',
 			'quotable_settings'
@@ -112,47 +111,55 @@ class Quotable_Admin {
 	/**
 	 * Add settings description markup
 	 */
-	function quotable_settings_section_setup() {
-		include( plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-settings-header.php' );
+	public function quotable_settings_section_setup() {
+		include plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-settings-header.php';
 	}
 
 	/**
 	 * Set up Quotable's activation settings markup
 	 */
-	function quotable_activation_setting_setup() {
+	public function quotable_activation_setting_setup() {
 		$is_activated = (array) get_option( 'quotable_activation' );
-		include( plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-settings-checkboxes.php' );
+		include plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-settings-checkboxes.php';
 	}
 
 	/**
 	 * Add link to Quotable settings from plugin list
+	 *
+	 * @param array $links an array of links from the plugin table entry.
 	 */
-	function quotable_add_plugin_page_settings_link( $links ) {
+	public function quotable_add_plugin_page_settings_link( $links ) {
 		$links[] = '<a href="' .
 			admin_url( 'options-discussion.php#quotable-settings' ) .
-			'">' . __('Settings', 'quotable') . '</a>';
+			'">' . __( 'Settings', 'quotable' ) . '</a>';
 		return $links;
 	}
 
 
 	/**
 	 * Add upgrade notice text to plugin list
+	 *
+	 * @param array $existing_metadata existing metadata.
+	 * @param array $new_metadata existing metadata.
 	 */
-	function show_upgrade_notification($existing_metadata, $new_metadata = NULL){
-		if (isset($new_metadata->upgrade_notice) && strlen(trim($new_metadata->upgrade_notice)) > 0){
-			echo '<br><br><strong>'. __('Upgrade Notice', 'quotable') . ':</strong> ';
-			echo esc_html($new_metadata->upgrade_notice);
+	public function show_upgrade_notification( $existing_metadata, $new_metadata = null ) {
+		if ( isset( $new_metadata->upgrade_notice ) && strlen( trim( $new_metadata->upgrade_notice ) ) > 0 ) {
+			echo '<br><br><strong>' . esc_html_e( 'Upgrade Notice', 'quotable' ) . ':</strong> ';
+			echo esc_html( $new_metadata->upgrade_notice );
 		}
 	}
 
 	/**
 	 * Set upgrade transient value used to trigger admin notice
+	 *
+	 * @param array $upgrader_object the upgrader object.
+	 * @param array $options options object.
 	 */
-	function set_upgrade_transient($upgrader_object, $options = NULL){
+	public function set_upgrade_transient( $upgrader_object, $options = null ) {
 		$basename = plugin_basename( __FILE__ );
-		if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
-			foreach( $options['plugins'] as $plugin ) {
-				if( $plugin == $basename ) {
+		if ( 'update' === $options['action'] && 'plugin' === $options['type'] && isset( $options['plugins'] ) ) {
+			foreach ( $options['plugins'] as $plugin ) {
+				if ( $plugin === $basename ) {
 					set_transient( 'quotable_updated', 1 );
 				}
 			}
@@ -162,50 +169,74 @@ class Quotable_Admin {
 	/**
 	 * Show a notice when the plugin has been updated
 	 */
-	function display_update_notice() {
-		if( get_transient( 'quotable_updated' ) ) {
+	public function display_update_notice() {
+		if ( get_transient( 'quotable_updated' ) ) {
 			$url = 'https://www.patreon.com/localjo';
-			$message = sprintf(__('Thank you for updating Quotable. If you\'ve found my plugin useful, <a href="%s">please consider becoming a Patron.</a>', 'quotable'), $url);
-			echo '<div id="message" class="updated notice is-dismissible"><p>' . $message . '</p></div>';
+			// Translators: the text between <a href="%s"> and </a> will be linked.
+			$message = sprintf( __( 'Thank you for updating Quotable. If you\'ve found my plugin useful, <a href="%s">please consider becoming a Patron.</a>', 'quotable' ), $url );
+			echo '<div id="message" class="updated notice is-dismissible"><p>' . wp_kses(
+				$message,
+				array(
+					'a' => array(
+						'href' => array(),
+					),
+				)
+			) . '</p></div>';
 			delete_transient( 'quotable_updated' );
 		}
-	 }
+	}
 
 	/**
 	 * Show a notice when the plugin has been updated
 	 */
-	 function display_install_notice() {
-		if( get_transient( 'quotable_activated' ) ) {
+	public function display_install_notice() {
+		if ( get_transient( 'quotable_activated' ) ) {
 			$url = 'https://www.patreon.com/localjo';
-			$message = sprintf(__('Thank you for installing Quotable. For exclusive updates, <a href="%s">become a Patron.</a>', 'quotable'), $url);
-			echo '<div id="message" class="updated notice is-dismissible"><p>' . $message . '</p></div>';
+			// Translators: the text between <a href="%s"> and </a> will be linked.
+			$message = sprintf( __( 'Thank you for installing Quotable. For exclusive updates, <a href="%s">become a Patron.</a>', 'quotable' ), $url );
+			echo '<div id="message" class="updated notice is-dismissible"><p>' . wp_kses(
+				$message,
+				array(
+					'a' => array(
+						'href' => array(),
+					),
+				)
+			) . '</p></div>';
 			delete_transient( 'quotable_activated' );
 		}
-	 }
+	}
 
 	/**
 	 * Register Quotable meta fields
 	 */
-	function quotable_register_post_meta() {
-		if (function_exists('register_post_meta')) {
+	public function quotable_register_post_meta() {
+		if ( function_exists( 'register_post_meta' ) ) {
 			$screens = array( 'post', 'page' );
 			foreach ( $screens as $screen ) {
-				register_post_meta( $screen, '_quotable_text_disable', array(
-						'show_in_rest' => true,
-						'single' => true,
-						'type' => 'boolean',
+				register_post_meta(
+					$screen,
+					'_quotable_text_disable',
+					array(
+						'show_in_rest'  => true,
+						'single'        => true,
+						'type'          => 'boolean',
 						'auth_callback' => function() {
 							return current_user_can( 'edit_posts' );
-						}
-				) );
-				register_post_meta( $screen, '_quotable_blockquote_disable', array(
-						'show_in_rest' => true,
-						'single' => true,
-						'type' => 'boolean',
+						},
+					)
+				);
+				register_post_meta(
+					$screen,
+					'_quotable_blockquote_disable',
+					array(
+						'show_in_rest'  => true,
+						'single'        => true,
+						'type'          => 'boolean',
 						'auth_callback' => function() {
 							return current_user_can( 'edit_posts' );
-						}
-				) );
+						},
+					)
+				);
 			}
 		}
 	}
@@ -220,10 +251,10 @@ class Quotable_Admin {
 				'quotable_sectionid',
 				__( 'Quotable', 'quotable' ),
 				array( $this, 'quotable_meta_box_callback' ),
-				$screen, 
-				'normal', 
+				$screen,
+				'normal',
 				'default',
-				array('__back_compat_meta_box' => true)
+				array( '__back_compat_meta_box' => true )
 			);
 		}
 	}
@@ -233,7 +264,7 @@ class Quotable_Admin {
 	 *
 	 * @param WP_POST $post A post object.
 	 */
-	function quotable_meta_box_callback( $post ) {
+	public function quotable_meta_box_callback( $post ) {
 		wp_nonce_field( 'quotable_meta_box', 'quotable_meta_box_nonce' );
 		$post_id             = $post->ID;
 		$blockquote_value    = get_post_meta(
@@ -246,7 +277,7 @@ class Quotable_Admin {
 			'_quotable_text_disable',
 			true
 		);
-		include( plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-metabox.php' );
+		include plugin_dir_path( __FILE__ ) . 'partials/' . $this->plugin_name . '-metabox.php';
 	}
 
 	/**
@@ -300,15 +331,17 @@ class Quotable_Admin {
 	 * Add quotable status classes to admin body
 	 * Used for editor styles
 	 *
+	 * @param string $classes The post id to save the metabox data to.
+	 *
 	 * @since    2.0.0
 	 */
-	public function add_quotable_status_classes($classes) {
-		$post_meta = get_post_meta(get_the_ID());
+	public function add_quotable_status_classes( $classes ) {
+		$post_meta                   = get_post_meta( get_the_ID() );
 		$is_post_blockquote_disabled = $post_meta['_quotable_blockquote_disable'][0];
-		$activation = get_option( 'quotable_activation' );
-		$is_blockquote_enabled = isset( $activation['blockquotes'] ) ;
-		$is_active = $is_blockquote_enabled && !$is_post_blockquote_disabled;
-		if ($is_active) {
+		$activation                  = get_option( 'quotable_activation' );
+		$is_blockquote_enabled       = isset( $activation['blockquotes'] );
+		$is_active                   = $is_blockquote_enabled && ! $is_post_blockquote_disabled;
+		if ( $is_active ) {
 			$classes = $classes . ' quotable-active';
 		}
 		return $classes;
@@ -320,25 +353,26 @@ class Quotable_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		$admin_bundle = include( plugin_dir_path( __FILE__ ) . 'bundle.asset.php');
+		$admin_bundle = include plugin_dir_path( __FILE__ ) . 'bundle.asset.php';
 		wp_register_script(
-				'quotable-admin',
-				plugins_url( 'bundle.js', __FILE__ ),
-				$admin_bundle['dependencies'],
-				$admin_bundle['version']
+			'quotable-admin',
+			plugins_url( 'bundle.js', __FILE__ ),
+			$admin_bundle['dependencies'],
+			$admin_bundle['version'],
+			true
 		);
 		wp_enqueue_script( 'quotable-admin' );
 
-		$activation = get_option( 'quotable_activation' );
-		$is_blockquote_enabled = isset( $activation['blockquotes'] ) ;
-		$is_text_enabled = isset( $activation['textselection'] ) ;
-		$is_active = array(
-			"blockquotes" => $is_blockquote_enabled && !$is_post_blockquote_disabled,
-			"textSelection" => $is_text_enabled && !$is_post_text_disabled
+		$activation            = get_option( 'quotable_activation' );
+		$is_blockquote_enabled = isset( $activation['blockquotes'] );
+		$is_text_enabled       = isset( $activation['textselection'] );
+		$is_active             = array(
+			'blockquotes'   => $is_blockquote_enabled && ! $is_post_blockquote_disabled,
+			'textSelection' => $is_text_enabled && ! $is_post_text_disabled,
 		);
 		wp_localize_script( 'quotable-admin', 'quotableActive', $is_active );
-		if (function_exists('wp_set_script_translations')) {
-			wp_set_script_translations( 'quotable-admin', 'quotable', plugin_dir_path( dirname(__FILE__) ) . 'languages' );
+		if ( function_exists( 'wp_set_script_translations' ) ) {
+			wp_set_script_translations( 'quotable-admin', 'quotable', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
 		}
 	}
 

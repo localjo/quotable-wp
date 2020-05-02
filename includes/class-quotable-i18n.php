@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +23,7 @@
  * @subpackage Quotable/includes
  * @author     Jo Sprague <josiah.sprague@gmail.com>
  */
-class Quotable_i18n {
+class Quotable_I18n {
 
 
 	/**

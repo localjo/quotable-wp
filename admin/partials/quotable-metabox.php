@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Markup for the Quotable metabox
  *
@@ -17,9 +16,9 @@
 		id="quotable_blockquote_disable"
 		name="quotable_blockquote_disable"
 		value="1"
-		<?php checked( 1, $blockquote_value ) ?>
+		<?php checked( 1, $blockquote_value ); ?>
 	/>
-  <?php esc_html_e( 'Disable Quotable for blockquotes on this page.', 'quotable' ) ?>
+<?php esc_html_e( 'Disable Quotable for blockquotes on this page.', 'quotable' ); ?>
 </label>
 <br>
 <label for="quotable_text_disable">
@@ -28,7 +27,7 @@
 		id="quotable_text_disable"
 		name="quotable_text_disable"
 		value="1" ' .
-		<?php checked( 1, $textselection_value ) ?>
+		<?php checked( 1, $textselection_value ); ?>
 	/>
-	<?php esc_html_e( 'Disable Quotable for text selection on this page.', 'quotable' ) ?>
+	<?php esc_html_e( 'Disable Quotable for text selection on this page.', 'quotable' ); ?>
 </label>

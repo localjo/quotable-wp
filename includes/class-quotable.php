@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -87,7 +86,7 @@ class Quotable {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Quotable_Loader. Orchestrates the hooks of the plugin.
-	 * - Quotable_i18n. Defines internationalization functionality.
+	 * - Quotable_I18n. Defines internationalization functionality.
 	 * - Quotable_Admin. Defines all hooks for the admin area.
 	 * - Quotable_Public. Defines all hooks for the public side of the site.
 	 *
@@ -129,7 +128,7 @@ class Quotable {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Quotable_i18n class in order to set the domain and to register the hook
+	 * Uses the Quotable_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +136,7 @@ class Quotable {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Quotable_i18n();
+		$plugin_i18n = new Quotable_I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 

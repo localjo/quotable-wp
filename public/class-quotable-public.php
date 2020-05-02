@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -44,14 +43,14 @@ class Quotable_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of the plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
-		$this->plugin_name = $plugin_name;
+		$this->plugin_name  = $plugin_name;
 		$this->container_id = $plugin_name . '-content';
-		$this->version = $version;
+		$this->version      = $version;
 
 	}
 
@@ -62,15 +61,15 @@ class Quotable_Public {
 	 * with their activation state
 	 */
 	public function get_active() {
-		$post_meta = get_post_meta(get_the_ID());
+		$post_meta                   = get_post_meta( get_the_ID() );
 		$is_post_blockquote_disabled = $post_meta['_quotable_blockquote_disable'][0];
-		$is_post_text_disabled = $post_meta['_quotable_text_disable'][0];
-		$activation = get_option( 'quotable_activation' );
-		$is_blockquote_enabled = isset( $activation['blockquotes'] ) ;
-		$is_text_enabled = isset( $activation['textselection'] ) ;
-		$is_active = array(
-			"blockquotes" => $is_blockquote_enabled && !$is_post_blockquote_disabled,
-			"textSelection" => $is_text_enabled && !$is_post_text_disabled
+		$is_post_text_disabled       = $post_meta['_quotable_text_disable'][0];
+		$activation                  = get_option( 'quotable_activation' );
+		$is_blockquote_enabled       = isset( $activation['blockquotes'] );
+		$is_text_enabled             = isset( $activation['textselection'] );
+		$is_active                   = array(
+			'blockquotes'   => $is_blockquote_enabled && ! $is_post_blockquote_disabled,
+			'textSelection' => $is_text_enabled && ! $is_post_text_disabled,
 		);
 		return $is_active;
 	}
@@ -84,7 +83,7 @@ class Quotable_Public {
 	public function quotable_filter_content( $content ) {
 		if ( is_singular() && is_main_query() ) {
 			$is_active = $this->get_active();
-			if ($is_active['blockquotes'] || $is_active['textSelection']) {
+			if ( $is_active['blockquotes'] || $is_active['textSelection'] ) {
 				$content = '<div id="' . $this->container_id . '">' . $content . '</div>';
 			}
 		}
@@ -108,40 +107,44 @@ class Quotable_Public {
 		 * class.
 		 */
 
-		$script_name = 'quotable-public';
-		$postMeta = get_post_meta(get_the_ID());
-		$host = isset( $_SERVER['HTTP_HOST'] ) // Input var okay.
-			? sanitize_text_field( wp_unslash(
-				$_SERVER['HTTP_HOST'] // Input var okay.
-			) ) : '';
-		$request_uri = isset( $_SERVER['REQUEST_URI'] ) // Input var okay.
-			? sanitize_text_field( wp_unslash(
-				$_SERVER['REQUEST_URI'] // Input var okay.
-			) ) : '';
-		$pageurl     = esc_url_raw(
+		$script_name    = 'quotable-public';
+		$host           = isset( $_SERVER['HTTP_HOST'] ) // Input var okay.
+			? sanitize_text_field(
+				wp_unslash(
+					$_SERVER['HTTP_HOST'] // Input var okay.
+				)
+			) : '';
+		$request_uri    = isset( $_SERVER['REQUEST_URI'] ) // Input var okay.
+			? sanitize_text_field(
+				wp_unslash(
+					$_SERVER['REQUEST_URI'] // Input var okay.
+				)
+			) : '';
+		$pageurl        = esc_url_raw(
 			( is_ssl() ? 'https://' : 'http://' ) . $host . $request_uri
 		);
-		$tag_names = function($tag) {
+		$tag_names      = function( $tag ) {
 			return $tag->name;
 		};
-		$tags = get_the_tags() ? array_map($tag_names, get_the_tags()) : array();
+		$tags           = get_the_tags() ? array_map( $tag_names, get_the_tags() ) : array();
 		$post_author_id = get_post_field( 'post_author', $post->ID );
-		$options = array (
-			"containerId" => $this->container_id,
-			"isActive" => $this->get_active(),
-			"authorTwitter"   => get_the_author_meta( 'twitter', $post_author_id ),
-			"siteSocial"  => get_option( 'wpseo_social' ),
-			"tags" => $tags,
-			"pageUrl" => $pageurl
+		$options        = array(
+			'containerId'   => $this->container_id,
+			'isActive'      => $this->get_active(),
+			'authorTwitter' => get_the_author_meta( 'twitter', $post_author_id ),
+			'siteSocial'    => get_option( 'wpseo_social' ),
+			'tags'          => $tags,
+			'pageUrl'       => $pageurl,
 		);
 
-		$public_bundle = include( plugin_dir_path( __FILE__ ) . 'bundle.asset.php');
-		wp_register_script('wp-polyfill', null); // Script won't load in old WP if we don't register dependencies first
+		$public_bundle = include plugin_dir_path( __FILE__ ) . 'bundle.asset.php';
+		wp_register_script( 'wp-polyfill', null ); // Script won't load in old WP if we don't register dependencies first.
 		wp_register_script(
-				$script_name,
-				plugins_url( 'bundle.js', __FILE__ ),
-				$public_bundle['dependencies'],
-				$public_bundle['version']
+			$script_name,
+			plugins_url( 'bundle.js', __FILE__ ),
+			$public_bundle['dependencies'],
+			$public_bundle['version'],
+			true
 		);
 
 		wp_enqueue_script( $script_name );

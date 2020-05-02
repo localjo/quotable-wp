@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin activation
  *
@@ -28,7 +27,7 @@ class Quotable_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
- 		set_transient( 'quotable_activated', 1 );
+		set_transient( 'quotable_activated', 1 );
 	}
 
 }
