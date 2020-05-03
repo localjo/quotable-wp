@@ -1,9 +1,9 @@
 === Quotable ===
 Contributors: josiahsprague
 Donate link: https://www.patreon.com/localjo
-Tags: social, quotes, sharing, tweet, twitter, medium, share buttons, social marketing, social share, social sharing, social media, text selection
+Tags: social media, share buttons, quotes, twitter, medium
 Requires at least: 3.0.1
-Tested up to: 5.4.1
+Tested up to: 5.4
 Stable tag: 2.0.0
 Requires PHP: 5.2
 License: GPLv2 or later
