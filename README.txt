@@ -1,5 +1,5 @@
 === Quotable ===
-Contributors: josiahsprague
+Contributors: josiahsprague, alihusnainarshad
 Donate link: https://www.patreon.com/localjo
 Tags: social media, share buttons, quotes, twitter, medium
 Requires at least: 3.0.1

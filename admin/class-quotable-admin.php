@@ -2,19 +2,11 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://iamlocaljo.com
- * @since      1.0.0
- *
- * @package    Quotable
- * @subpackage Quotable/admin
- */
-
-/**
- * The admin-specific functionality of the plugin.
- *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
+ * @link       https://iamlocaljo.com
+ * @since      1.0.0
  * @package    Quotable
  * @subpackage Quotable/admin
  * @author     Jo Sprague <josiah.sprague@gmail.com>

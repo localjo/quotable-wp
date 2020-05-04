@@ -2,19 +2,11 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://iamlocaljo.com
- * @since      1.0.0
- *
- * @package    Quotable
- * @subpackage Quotable/public
- */
-
-/**
- * The public-facing functionality of the plugin.
- *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
- *
+ * 
+ * @link       https://iamlocaljo.com
+ * @since      1.0.0
  * @package    Quotable
  * @subpackage Quotable/public
  * @author     Jo Sprague <josiah.sprague@gmail.com>
