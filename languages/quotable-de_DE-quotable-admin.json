@@ -1,0 +1,31 @@
+{
+  "translation-revision-date": "2020-05-01 21:26+0100",
+  "generator": "WP-CLI/2.5.0-alpha",
+  "source": "admin/js/quotable-admin.js",
+  "domain": "quotable",
+  "locale_data": {
+    "quotable": {
+      "": {
+        "domain": "quotable",
+        "lang": "de-de",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Enable popup toolbar on text selection": [
+        "Aktiviere Pop-Up Symbolleiste für Textauswahl"
+      ],
+      "Add sharing links to blockquotes": [
+        "Füge Link teilen zum Blockzitat hinzu"
+      ],
+      "Placeholders are shown in the editor in the places where\n              Quotable links will be added to content on the front end.\n              You must refresh the editor after changing this setting\n              for placeholders to update.": [
+        "Im Editor werden Platzhalter angezeigt, wo die zitierbaren Links im Front End zugefügt werden. Du muss den Editor neu laden, nachdem du diese Einstellung geändert hast."
+      ],
+      "Placeholders are shown in the editor in the places where\n              Quotable links will be added to content on the front end.": [
+        "Im Editor werden Platzhalter angezeigt, wo die zitierbaren Links im Front End zugefügt werden."
+      ],
+      "Use Page Default": ["Benutze Standardeinstellung"],
+      "Show link on this quote": ["Zeige Link für das Zitat"],
+      "Show": ["Zeigen"],
+      "Hide": ["Verstecken"]
+    }
+  }
+}

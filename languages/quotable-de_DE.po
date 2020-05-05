@@ -1,0 +1,106 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Quotable Plugin\n"
+"POT-Creation-Date: 2020-05-01 20:46+0100\n"
+"PO-Revision-Date: 2020-05-05 13:06+0100\n"
+"Last-Translator: \n"
+"Language-Team: Jo Sprague\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;esc_html_e;_e\n"
+"X-Poedit-SearchPath-0: languages\n"
+"X-Poedit-SearchPath-1: admin/class-quotable-admin.php\n"
+"X-Poedit-SearchPath-2: admin/js/quotable-admin.js\n"
+"X-Poedit-SearchPath-3: admin/partials/quotable-metabox.php\n"
+"X-Poedit-SearchPath-4: admin/partials/quotable-settings-checkboxes.php\n"
+"X-Poedit-SearchPath-5: admin/partials/quotable-settings-header.php\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+
+#: admin/class-quotable-admin.php:96 admin/class-quotable-admin.php:219
+msgid "Quotable"
+msgstr "Quotable"
+
+#: admin/class-quotable-admin.php:103
+msgid "Quotable Features"
+msgstr "Quotable Funktionen"
+
+#: admin/class-quotable-admin.php:133
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: admin/class-quotable-admin.php:143
+msgid "Upgrade Notice"
+msgstr "Hinweis zum Upgrade"
+
+#: admin/class-quotable-admin.php:168
+#, php-format
+msgid ""
+"Thank you for updating Quotable. If you've found my plugin useful, <a href="
+"\"%s\">please consider becoming a Patron.</a>"
+msgstr ""
+"Vielen Dank für das updaten von Quotable. Wenn dir mein Plugin gefallen "
+"hat, <a href=\"%s\">werde Sponsor.</a>"
+
+#: admin/class-quotable-admin.php:180
+#, php-format
+msgid ""
+"Thank you for installing Quotable. For exclusive updates, <a href=\"%s"
+"\">become a Patron.</a>"
+msgstr ""
+"Vielen Dank für das installieren von Quotable.  <a href=\"%s\">Werde "
+"Sponsor</a> und erhalte exklusive Updates."
+
+#: admin/js/quotable-admin.js:23
+#: admin/partials/quotable-settings-checkboxes.php:30
+msgid "Enable popup toolbar on text selection"
+msgstr "Aktiviere Pop-Up Symbolleiste für Textauswahl"
+
+#: admin/js/quotable-admin.js:31
+#: admin/partials/quotable-settings-checkboxes.php:22
+msgid "Add sharing links to blockquotes"
+msgstr "Füge Link teilen zum Blockzitat hinzu"
+
+#: admin/js/quotable-admin.js:37
+msgid ""
+"Placeholders are shown in the editor in the places where\n"
+"              Quotable links will be added to content on the front end.\n"
+"              You must refresh the editor after changing this setting\n"
+"              for placeholders to update."
+msgstr ""
+"Im Editor werden Platzhalter angezeigt, wo die zitierbaren Links im Front "
+"End zugefügt werden. Du muss den Editor neu laden, nachdem du diese "
+"Einstellung geändert hast."
+
+#: admin/js/quotable-admin.js:90
+msgid "Use Page Default"
+msgstr "Benutze Standardseite"
+
+#: admin/js/quotable-admin.js:94
+msgid "Show"
+msgstr "Zeigen"
+
+#: admin/js/quotable-admin.js:98
+msgid "Hide"
+msgstr "Verstecken"
+
+#: admin/partials/quotable-metabox.php:22
+msgid "Disable Quotable for blockquotes on this page."
+msgstr "Deaktiviere Quotable für Blockzitate auf dieser Seite."
+
+#: admin/partials/quotable-metabox.php:33
+msgid "Disable Quotable for text selection on this page."
+msgstr "Deaktiviere Quotable für Textauswahl auf dieser Seite."
+
+#: admin/partials/quotable-settings-header.php:13
+msgid ""
+"Enable or disable Quotable features site-wide. You can also set these "
+"preferences on individual posts or pages from their respective editors."
+msgstr ""
+"Aktiviere oder deaktiviere die Zitierfunktion auf der gesamten Seiten. Du "
+"kannst die Einstellung in jedem Beitrag und auf jeder Seite im Editor "
+"vornehmen."
