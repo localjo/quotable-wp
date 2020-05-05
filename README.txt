@@ -1,9 +1,9 @@
 === Quotable ===
 Contributors: josiahsprague
 Donate link: https://www.patreon.com/localjo
-Tags: social, quotes, sharing, tweet, twitter, medium, share buttons, social marketing, social share, social sharing, social media, text selection
+Tags: social media, share buttons, quotes, twitter, medium
 Requires at least: 3.0.1
-Tested up to: 5.4.1
+Tested up to: 5.4
 Stable tag: 2.0.0
 Requires PHP: 5.2
 License: GPLv2 or later
@@ -34,7 +34,7 @@ Yes. Go to Settings > Discussion > Quotable to enable or disable plugin features
 
 = Can you add the option to share quotes on more social networks? =
 
-If you're interested in having the option to share quotes via Facebook, Reddit, Hacker News or email, I am developing these features in a separate plugin exclusively for sponsors. If you would like to receive exclusive updates and features, please sponsor me on Patreon: https://www.patreon.com/localjo
+If you're interested in having the option to share quotes via Facebook, Reddit, Hacker News or email, I am developing these features in a separate plugin exclusively for sponsors. If you would like to receive exclusive updates and features, please [sponsor me on Patreon](https://www.patreon.com/localjo).
 
 = How do I make shared quotes mention the author's Twitter account? =
 
@@ -42,7 +42,7 @@ You can use Yoast's WordPress SEO plugin to set a site-wide Twitter account and 
 
 = How do I add hashtags to the shared content? =
 
-Hashtags are generated based on the WordPress tags that were used on the post. If you want more control over which hashtags are generated, I am developing these features in a separate plugin exclusively for sponsors. If you would like to receive exclusive updates and features, please sponsor me on Patreon: https://www.patreon.com/localjo
+Hashtags are generated based on the WordPress tags that were used on the post. If you want more control over which hashtags are generated, I am developing these features in a separate plugin exclusively for sponsors. If you would like to receive exclusive updates and features, please [sponsor me on Patreon](https://www.patreon.com/localjo).
 
 == Screenshots ==
 1. This plugin adds a sharing button at the end of all quote blocks. The quote text will is highlighted on hover.
@@ -117,4 +117,4 @@ This update adds support for the Gutenberg blocks editor.
 * Initial version
 
 == Sponsorship ==
-I am software engineer and I love to create free and open source software for nomads, bloggers and language learners. In order to afford to spend time creating, maintaining and updating my free software, I rely on financial support from donors. In return, I provide my donors with access to exclusive updates, support and features. If you find this plugin useful, please consider supporting me for just $1/month on Patreon: https://www.patreon.com/localjo
+I am software engineer and I love to create free and open source software for nomads, bloggers and language learners. In order to afford to spend time creating, maintaining and updating my free software, I rely on financial support from donors. In return, I provide my donors with access to exclusive updates, support and features. If you find this plugin useful, please consider [supporting me for just $1/month on Patreon](https://www.patreon.com/localjo).
