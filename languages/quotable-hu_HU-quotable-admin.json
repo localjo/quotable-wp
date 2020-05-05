@@ -1,0 +1,31 @@
+{
+  "translation-revision-date": "2020-05-01 21:26+0100",
+  "generator": "WP-CLI/2.5.0-alpha",
+  "source": "admin/js/quotable-admin.js",
+  "domain": "quotable",
+  "locale_data": {
+    "quotable": {
+      "": {
+        "domain": "quotable",
+        "lang": "hu-hu",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Enable popup toolbar on text selection": [
+        "Felugró eszköztár engedélyezése a szövegválasztáshoz"
+      ],
+      "Add sharing links to blockquotes": [
+        "Megosztási linkek hozzáadása a blokkjegyzetekhez"
+      ],
+      "Placeholders are shown in the editor in the places where\n              Quotable links will be added to content on the front end.\n              You must refresh the editor after changing this setting\n              for placeholders to update.": [
+        "A placeholderek a szerkesztőben azokon a helyeken jelennek meg, ahol a Quotable linkek hozzáadódnak a kezelőfelület tartalmához. Frissítse a szerkesztőt, miután megváltoztatta ezt a beállítást a placeholderek frissítéséhez."
+      ],
+      "Placeholders are shown in the editor in the places where\n              Quotable links will be added to content on the front end.": [
+        "A placeholderek a szerkesztőben azokon a helyeken jelennek meg, ahol a Quotable linkek hozzáadódnak a kezelőfelület tartalmához."
+      ],
+      "Use Page Default": ["Oldalbeállítás használata"],
+      "Show link on this quote": ["Hivatkozás mutatása ebben az idézetben"],
+      "Show": ["Megjelenítés"],
+      "Hide": ["Elrejtés"]
+    }
+  }
+}
