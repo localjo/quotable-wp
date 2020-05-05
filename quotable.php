@@ -10,7 +10,7 @@
  * Plugin Name:       Quotable
  * Plugin URI:        https://iamlocaljo.com
  * Description:       Adds buttons to quotes and text selection that make it quick and easy for your readers to share quotes from your website.
- * Version:           2.0.0
+ * Version:           2.1.0
  * Author:            Jo Sprague
  * Author URI:        https://iamlocaljo.com
  * License:           GPL-2.0+
@@ -24,7 +24,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'QUOTABLE_VERSION', '2.0.0' );
+define( 'QUOTABLE_VERSION', '2.1.0' );
 
 /**
  * The code that runs during plugin activation.

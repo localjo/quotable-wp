@@ -1,7 +1,7 @@
 {
   "name": "quotable-wp",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Adds buttons to quotes and text selection that make it quick and easy for your readers to share quotes from your WordPress website.",
   "main": "build/admin.js",
   "scripts": {

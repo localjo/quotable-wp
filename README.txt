@@ -4,7 +4,7 @@ Donate link: https://www.patreon.com/localjo
 Tags: social media, share buttons, quotes, twitter, medium
 Requires at least: 3.0.1
 Tested up to: 5.4
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 Requires PHP: 5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -50,10 +50,15 @@ Hashtags are generated based on the WordPress tags that were used on the post. I
 3. The sharing button opens a popup for readers to share the quote on social media.
 
 == Upgrade Notice ==
+= 2.1.0 =
+This update adds German and Hungarian translations.
 = 2.0.0 =
 This update adds support for the Gutenberg blocks editor.
 
 == Changelog ==
+= 2.1.0 =
+* Adds Hungarian translation
+* Adds German translation
 = 2.0.0 =
 * Adds support for Gutenberg block editor
 * Adds the ability to enable/disable buttons on individual quotes in the block editor
@@ -61,7 +66,7 @@ This update adds support for the Gutenberg blocks editor.
 * Hides Quotable settings on posts and pages if disabled site-wide
 * Completely rewritten codebase using  WordPress coding standards and modern JavaScript
 * Removes a call to platform.twitter.com
-* Adds Spanish, German and Hungarian translations for the plugin
+* Adds Spanish translation for the plugin
 * Improves the user expereince when installing and updating
 * Adds settings shortcut in plugin list
 * Various bug fixes and tests
